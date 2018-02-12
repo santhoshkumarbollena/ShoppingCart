@@ -15,7 +15,9 @@ public class ResourceForAll {
 	{
 		GettingInfFromDb g=new GettingInfFromDb();
 		List<ItemsDetails> li=new ArrayList<ItemsDetails>();
+		ItemsDetails it=new ItemsDetails();
 		li=g.getDetails();
+		
 		return li;
 	}
 }
