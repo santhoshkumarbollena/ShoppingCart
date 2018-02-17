@@ -7,11 +7,11 @@ public class DbmsConnection {
 	{
 		try{
 
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			
 			String s="root";
 			String pass="12345";
-			String url="jdbc:mysql://localhost:3306/DigitalShoppingCart";
+			String url="jdbc:mysql://localhost:3306/DigitalShoppingCart?useSSL=true";
 			String q="select * from ItemsList ";
 			
 			Connection con=DriverManager.getConnection(url,s,pass);
