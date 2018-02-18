@@ -1,0 +1,112 @@
+@CHARSET "ISO-8859-1";
+
+.Wrapper {
+	width: 100%;
+	background: white;
+	margin: 0 auto 0 auto;
+	height: 100%;
+}
+
+.heading {
+	height: 50px;
+	background: #173139;
+	padding: 10px;
+	text-align: center;
+	color: white;
+}
+
+.registerButton:HOVER {
+	background: #040a0b;
+	border: 1px solid #777;
+}
+
+.HomeButtons:HOVER {
+	background: #040a0b;
+	border: 1px solid #777;
+}
+
+.searchclass {
+	color: #9d9d9d;
+	height: 20px;
+	width: 30%;
+	border: 1;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+}
+
+div.gallery {
+	margin: 5px;
+	border: 1px solid #ccc;
+	float: left;
+	width: 250px;
+}
+
+div.gallery:hover {
+	border: 1px solid #777;
+}
+
+div.gallery img {
+	height: 250px;
+	width: 250px;
+}
+
+img {
+	height: 500px;
+	width: 500px;
+}
+
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	height: 200px;
+	width: 200px;
+	border: 1px solid #ccc;
+}
+
+div.desc {
+	padding: 10px;
+	text-align: center;
+}
+
+.HomeButtons {
+	border: 0;
+	height: 40px;
+	width: 10%;
+	background: #173139;
+	color: #ffffff;
+	font-style: italic;
+	font-weight: bold;
+}
+
+p {
+	font-weight: bold;
+}
+
+.navigation {
+	height: 50px;
+	background: #173139;
+	width: widows.width;
+	color: white;
+	font-weight: bold;
+}
+
+.content {
+	min-height: 500px;
+	background: #ffffff;
+	width: 100%;
+	float: left;
+}
+
+.footer {
+	background: #173139;
+	height: 30%;
+	width: 100%;
+	color: #ffffff;
+	text-align: center;
+	bottom: 0;
+}

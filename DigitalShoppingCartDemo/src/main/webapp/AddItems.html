@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html ng-app="myModule" ng-controller="myController">
+    <head>
+        <title>Registration Page</title>
+        <meta charset="ISO-8859-1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <script src="angular.js"></script>
+        <link rel="stylesheet" type="text/css" href="HomePageStyle.css">
+       <script type="text/javascript">
+		var app=angular.module("myModule",[]);
+		app.controller("myController",function($scope,$http,$log){
+		var emp={name:'santhosh'};
+		$scope.emp=emp;
+
+	$scope.items=[];
+		$scope.item={
+						ItemName:"",
+						Unicode:"",
+						Units:"",
+						AddedDate:"",
+						price:-1
+				};
+		$scope.AddItemDetails=function(){
+    		$http({
+    			method :'POST',
+    			url : 'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/demo',
+    			data : angular.toJson($scope.item),
+    			headers:{'Content-Type':'application/json'}
+    		}).then();
+    		
+    	}
+		
+	});
+
+</script>
+            
+    </head>
+    <body >      
+       <div class="Wrapper" >
+       <div >
+			<header ng-include="'Header.html'"></header>
+	</div>
+       
+        <div class="content">
+    <center><h1>Adding Item</h1></center>
+    
+   <div >
+   
+    </div>
+    <form ng-submit="AddItemDetails()">
+    {{emp.name}}{{item.ItemName}}{{item.Unicode}}{{item.AddedDate}}{{item.Units}}
+    	<table>
+    	
+    		<tr>
+    			<td>Enter Item Name:</td>
+    			<td><input type="text" id="ItemName" ng-model="item.ItemName"></td>
+    		</tr>
+    		
+    		<tr>
+    			<td>Enter Unicode:</td>
+    			<td><input type="text" id="Unicode" ng-model="item.Unicode"></td>
+    		</tr>
+    		
+    		<tr>
+    			<td>Enter Units:</td>
+    			<td><input type="text" id="Units" ng-model="item.Units"></td>
+    		</tr>
+    		
+    		<tr>
+    			<td>Enter Added date:</td>
+    			<td><input type="text" id="AddedDate" ng-model="item.AddedDate"></td>
+    		</tr>
+    		<tr>
+    			<td>Enter price:</td>
+    			<td><input type="text" id="Price" ng-model="item.price"></td>
+    		</tr>
+    		<tr>
+    		<td><input type="submit" value="submit" class="HomeButton"></td>
+    		</tr>
+    	</table>
+    </form>
+    </div>
+    <footer ng-include="'Footer.html'"></footer>
+    	</div>
+    
+    </body>
+</html>

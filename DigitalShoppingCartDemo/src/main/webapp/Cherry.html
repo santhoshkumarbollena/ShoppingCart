@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+<meta charset="ISO-8859-1">
+<title>Cherry</title>
+<link rel="stylesheet" type="text/css" href="SubPagesStyle.css">
+<script src="angular.js"></script>
+<script src="Header.js"></script>
+<script type="text/javascript">
+ var app=angular.module("MyModule",[]);
+ app.controller("MyController",function ($scope)
+		 {
+	 			$scope.units=1;
+	 			var CalPrice=function(units)
+	 			{
+	 				$scope.price=12*units;
+	 			}
+		 });
+</script>
+</head>
+<body>
+	<div class="Wrapper">
+		<header ng-include="'Header.html'"></header>
+
+	</div>
+	<div class="content">
+		<div>
+			<img alt="Cherry" src="project images/fruits/cherry.jpg"
+				class="center">
+				<h3 align="center">Cherry</h3>
+				<table align="center">
+				<tr >
+					<td>Enter Units:</td>
+					<td><input type="text" name="units" ng-model="units" ng-keyup="CalPrice(units)" ></td>
+				</tr>
+				<tr>
+					<th>The Cost For {{units}} units is {{price+10}}</th>
+				</tr>
+				</table>
+			
+
+		</div>
+
+	</div>
+
+
+	<footer ng-include="'Footer.html'"></footer>
+	</div>
+
+
+
+</body>
+</html>

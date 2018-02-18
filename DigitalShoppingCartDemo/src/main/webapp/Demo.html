@@ -1,0 +1,50 @@
+<html>
+
+<head>
+
+<title>First angularJs</title>
+<script src="angular.js"></script>
+<script type="text/javascript">
+	var app=angular.module("myModule",[]);
+	app.controller("myController",function($scope,$http,$log){
+		var emp={name:'santhosh'};
+		$scope.emp=emp;
+		
+		 _getItemDetails();
+		 function _getItemDetails() {
+		     $http({
+		         method : 'GET',
+		         url : 'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll'
+		     }).then(function (response) {
+		         $scope.items = response.data;
+		         $scope.stud={names:'demo'};
+		     }, function errorCallback(response) {
+		         console.log(response.statusText);
+		     });
+		 }
+	});
+
+</script>
+</head>
+
+<body ng-app="myModule" ng-controller="myController">
+<h1 align="center">Items From DataBase</h1>
+	<table border="1" align="center">
+		<tr>
+			<th>ItemName</th>
+			<th>Unicode</th>
+			<th>Units</th>
+			<th>Addeddate</th>
+			<th>price</th>
+		</tr>
+		<tr ng-repeat="item in items">
+			<td>{{item.itemName}}</td>
+			<td>{{item.unicode}}</td>
+			<td>{{item.units}}</td>
+			<td>{{item.addedDate}}</td>
+			<td>{{item. price}}</td>
+		</tr>
+	</table>
+</body>
+
+</html>

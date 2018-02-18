@@ -1,0 +1,111 @@
+@CHARSET "ISO-8859-1";
+
+.Wrapper {
+	width: 100%;
+	background: white;
+	margin: 0 auto 0 auto;
+	height: 100%;
+}
+
+.registerButton {
+	height: 40px;
+	width: 80px;
+	background: #173139;
+	color: #ffffff;
+	font-weight: bold;
+}
+
+.registerButton:HOVER {
+	background: #040a0b;
+	border: 1px solid #777;
+}
+
+.heading {
+	height: 50px;
+	background: #173139;
+	padding: 10px;
+	text-align: center;
+	color: white;
+}
+
+.searchclass {
+	color: #9d9d9d;
+	height: 20px;
+	width: 30%;
+	border: 1;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+}
+
+p {
+	font-weight: bold;
+}
+
+
+
+div.gallery {
+	margin: 5px;
+	border: 1px solid #ccc;
+	float: left;
+	width: 200px;
+}
+
+div.gap {
+	width: 60px;
+}
+
+div.gallery:hover {
+	border: 1px solid #777;
+}
+
+div.gallery img {
+	height: 200px;
+	width: 200px;
+}
+
+div.desc {
+	padding: 15px;
+	text-align: center;
+}
+
+.HomeButtons {
+	border: 0;
+	height: 40px;
+	width: 10%;
+	background: #173139;
+	color: #ffffff;
+	font-weight: bold;
+}
+
+.HomeButtons:HOVER {
+	background: #040a0b;
+	border: 1px solid #777;
+}
+
+.navigation {
+	height: 50px;
+	background: #173139;
+	width: widows.width;
+	color: white;
+	font-weight: bold;
+}
+
+.content {
+	min-height: 500px;
+	background: #ffffff;
+	width: 100%;
+	float: left;
+}
+
+.footer {
+	background: #173139;
+	height: 20%;
+	width: 100%;
+	color: #ffffff;
+	text-align: center;
+	bottom: 0;
+}

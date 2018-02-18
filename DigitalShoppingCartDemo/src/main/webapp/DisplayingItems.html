@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html ng-app="myModule" ng-controller="myController">
+    <head>
+        <title>Registration Page</title>
+        <meta charset="ISO-8859-1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <script src="angular.js"></script>
+        <link rel="stylesheet" type="text/css" href="HomePageStyle.css">
+    <script type="text/javascript">
+	var app=angular.module("myModule",[]);
+	app.controller("myController",function($scope,$http,$log){
+		var emp={name:'santhosh'};
+		$scope.emp=emp;
+		
+		 _getItemDetails();
+		 function _getItemDetails() {
+		     $http({
+		         method : 'GET',
+		         url : 'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll'
+		     }).then(function (response) {
+		         $scope.items = response.data;
+		         $scope.stud={names:'demo'};
+		     }, function errorCallback(response) {
+		         console.log(response.statusText);
+		     });
+		 }
+	});
+
+</script>
+    </head>
+    <body >      
+       <div class="Wrapper" >
+       <div >
+			<header ng-include="'Header.html'"></header>
+	</div>
+       
+        <div class="content">
+    <center><h1>Adding Item</h1></center>
+    
+  <h1 align="center">Items From DataBase</h1>
+	<table border="1" align="center">
+		<tr>
+			<th>ItemName</th>
+			<th>Unicode</th>
+			<th>Units</th>
+			<th>Addeddate</th>
+			<th>price</th>
+		</tr>
+		<tr ng-repeat="item in items">
+			<td>{{item.itemName}}</td>
+			<td>{{item.unicode}}</td>
+			<td>{{item.units}}</td>
+			<td>{{item.addedDate}}</td>
+			<td>{{item. price}}</td>
+		</tr>
+	</table>
+    </div>
+    <footer ng-include="'Footer.html'"></footer>
+    	</div>
+    
+    </body>
+</html>

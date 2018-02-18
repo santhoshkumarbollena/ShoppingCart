@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html ng-app="myModule" ng-controller="myController">
+    <head>
+        <title>Registration Page</title>
+        <meta charset="ISO-8859-1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="ValidRegistration.js"></script>
+        <script src="angular.js"></script>
+        <link rel="stylesheet" type="text/css" href="HomePageStyle.css">
+       <script type="text/javascript">
+		var app=angular.module("myModule",[]);
+		app.controller("myController",function($scope,$http,$log){
+		var emp={name:'santhosh'};
+		$scope.emp=emp;
+
+
+		$scope.Customer={
+						FirstName:'',
+						LastName:'',
+						Email:'',
+						Password:'',
+						PhoneNumber:''
+				};
+		$scope.RegisterCustomerDetails=function(){
+    		$http({
+    			method :'POST',
+    			url : 'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/RegisteringDetails',
+    			data : angular.toJson($scope.Customer),
+    			headers:{'Content-Type':'application/json'}
+    		}).then();
+    		
+    	}
+
+		
+	});
+
+</script>
+            
+    </head>
+    <body >
+   
+       
+       <div class="Wrapper" >
+       <div >
+			<header ng-include="'Header.html'"></header>
+	</div>
+       
+        <div class="content">
+    <center><h1>Registration Page</h1></center>
+    
+   <div >
+    
+    <form ng-submit="RegisterCustomerDetails()"  >
+   
+        <table align="center">
+            <tr>
+                <td ><b>First Name:</b></td>
+                <td ><input type="text" id="firstname" name="firstname12" onkeyup="textfn()" maxlength="30" ng-model="Customer.FirstName" required></td>
+                <tr>
+                <td></td>
+                <td>  <label id="labelfn"></label></td>
+                </tr>
+            </tr>
+            <tr>
+                <td><b>Last Name:</b></td>
+                <td><input type="text" id="lastname" name="lastname12" maxlength="30" onkeyup="textln()" ng-model="Customer.LastName" required></td>
+                <tr><td></td>
+                <td>  <label id="labelln"></label></td>
+                </tr>
+            </tr>
+            <tr>
+                <td><b>E-mail:</b></td>
+                <td><input type="text" id="email1" name="email123"  maxlength="30" onkeyup="email12()" ng-model="Customer.Email" required></td>
+                <tr><td></td>
+                <td>  <label id="labelmail"></label></td>
+                </tr>
+            </tr>
+            <tr>
+                <td><b>Password:</b></td>
+                <td><input type="password" id="password" name="password12" onkeyup="pwd()" maxlength="30" ng-model="Customer.Password" required></td>
+                <tr><td></td>
+                <td>  <label id="labelpwd"></label></td>
+                </tr>
+            </tr>
+            <tr>
+                <td><b>Re-Password:</b></td>
+                <td><input type="password" id="repassword" name="repassword12" onkeyup="repwd()" maxlength="30" required></td>
+                <tr><td></td>
+                <td>  <label id="labelrepwd"></label></td>
+                </tr>
+            </tr>
+            <tr>
+                <td><b>Phone Number:</b></td>
+                <td><input type="text" id="phonenumber" name="phonenumber12" onkeyup="phno()" maxlength="30" ng-model="Customer.PhoneNumber" required></td>
+                <tr><td></td>
+                <td>  <label id="labelphno"></label></td>
+                </tr>
+            </tr>
+            <tr >
+                <td  ><input type="submit" class="registerButton" value="Register" ></td>
+                  <td  ><input type="reset" class="registerButton" onclick="Empty()" value="Reset"></td>
+            </tr>
+           
+            </table>
+    </form>
+    </div>
+    </div>
+    <footer ng-include="'Footer.html'"></footer>
+    	</div>
+    
+    </body>
+</html>

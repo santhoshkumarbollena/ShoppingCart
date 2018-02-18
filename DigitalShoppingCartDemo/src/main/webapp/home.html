@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en"  ng-app>
+<head>
+<meta charset="ISO-8859-1">
+<title>Home Page</title>
+<link rel="stylesheet" type="text/css" href="HomePageStyle.css">
+<script src="angular.js"></script>
+<script src="Header.js"></script>
+</head>
+<body >
+	<div class="Wrapper">		
+			<header ng-include="'Header.html'"></header>
+			
+		</div>
+		<div class="content">
+			<div class="gap"></div>
+			<div class="gallery">
+				<a href="dryfruits.html"><img alt="dryfruits" src="project images/dryfruits.jpg"></a>
+				<div class="desc"><p>Dry Fruits</p></div>
+			</div>
+			<div class="gap"></div>
+			<div class="gallery">
+				<a href="softdrinks.html"><img alt="soft drinks" src="project images/softdrinks.jpg"></a>
+				<div class="desc"><p>Soft Drinks</p></div>
+			</div>
+			<div class="gap"></div>
+			<div class="gallery">
+				<a href="fruits.html"><img alt="fruits" src="project images/fruits.jpg"></a>
+				<div class="desc"><p>Fruits</p></div>
+			</div>
+			<div class="gap">  </div>
+			<div class="gallery">
+				<a href="vegitables.html"><img alt="vegitables" src="project images/vegitables.jpg"></a>
+				<div class="desc"><p>Vegitables</p></div>
+			</div>
+			<div class="gap"></div>
+			<div class="gallery">
+				<a href="icecreams.html"><img alt="ice cream" src="project images/icecream.jpg"></a>
+				<div class="desc"><p>Ice Creams</p></div>
+			</div>
+			<div class="gap"></div>
+			<div class="gallery">
+				<a href="cakes.html"><img alt="cake" src="project images/cakes.jpg"></a>
+				<div class="desc"><p>Cakes</p></div>
+			</div>
+			
+		</div>
+		
+		
+		<footer ng-include="'Footer.html'"></footer>
+	</div>
+	
+	
+</body>
+</html>
