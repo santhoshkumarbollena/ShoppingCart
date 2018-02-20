@@ -7,7 +7,7 @@
                 var label="labelfn";
                 var x=document.getElementById(fn).value;
                 
-               if(!x.match(/^[a-zA-Z]$/)){
+               if(!x.match(/^[a-zA-Z]{3,}$/)){
                     procces(x,"invalid firstname","red",label);
                     return false;
                 }
@@ -21,7 +21,7 @@
                 var label="labelln";
                 var x=document.getElementById(ln).value;
                 
-               if(!x.match(/^[a-zA-Z]$/)){
+               if(!x.match(/^[a-zA-Z]{3,}$/)){
                     procces(x,"invalid lastname","red",label);
                     return false;
                 }

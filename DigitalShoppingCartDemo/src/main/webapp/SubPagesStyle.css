@@ -14,7 +14,13 @@
 	text-align: center;
 	color: white;
 }
-
+.registerButton {
+	height: 40px;
+	width: 100px;
+	background: #173139;
+	color: #ffffff;
+	font-weight: bold;
+}
 .registerButton:HOVER {
 	background: #040a0b;
 	border: 1px solid #777;

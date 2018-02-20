@@ -1,4 +1,5 @@
 package RestfulWebServices.DigitalShoppingCart;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 @Path("/ResourceForAll")
 public class ResourceForAll {
 	ItemDetailsMapper g = new ItemDetailsMapper();
-
+	final static Logger logger = Logger.getLogger(Log4jExample.class);
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public List<ItemsDetails> getItemsDetails() {
@@ -29,7 +30,7 @@ public class ResourceForAll {
 	@Path("/demo")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ItemsDetails setItemDetails(ItemsDetails i1) {
-		System.out.println(i1.getAddedDate());
+		logger.info(i1.getAddedDate());
 		g.create(i1);
 		return i1;
 	}
@@ -40,7 +41,7 @@ public class ResourceForAll {
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public RegistrationClass SetRegistrationDetails(RegistrationClass r1) {
 		// r1.create(r1);
-		System.out.println(r1);
+		logger.info(r1);
 		RegisteringDetailsToDb rdb = new RegisteringDetailsToDb();
 		rdb.addCoustomer(r1);
 		return r1;

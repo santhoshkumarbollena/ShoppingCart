@@ -1,4 +1,5 @@
 package RestfulWebServices.DigitalShoppingCart;
+import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.*;
@@ -6,6 +7,7 @@ import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class RegisteringDetailsToDb {
+	final static Logger logger = Logger.getLogger(RegisteringDetailsToDb.class);
 	List<RegistrationClass> registerc=new ArrayList<RegistrationClass>();
 	DbmsConnection con=new DbmsConnection();
 	RegistrationClass rc=new RegistrationClass();
@@ -27,10 +29,10 @@ public class RegisteringDetailsToDb {
 			pstmt.setString(5, r1.getPhoneNumber());
 			int i=pstmt.executeUpdate();
 			if(i!=0){
-				System.out.println("registered succefully");
+				logger.info("registered succefully");
 			}
 			}catch(Exception ex){
-				System.out.println("exception caught"+ex);
+				logger.error("exception caught"+ex);
 				throw new RuntimeException("",ex);				
 			}
 		//return r1;

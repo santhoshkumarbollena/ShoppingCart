@@ -5,9 +5,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 public class ItemDetailsMapper
 {
-	
+	final static Logger logger = Logger.getLogger(ItemDetailsMapper.class);
 	ItemsDetails id=new ItemsDetails();
 	DbmsConnection con=new DbmsConnection();
 	List<ItemsDetails> li=new ArrayList<ItemsDetails>();
@@ -19,11 +20,11 @@ public class ItemDetailsMapper
 		try{
 			Connection connection=con.getConnection();
 			if(connection==null){
-				System.out.println("connection is null");
+				logger.error("connection is null");
 			}
 		PreparedStatement pstmt=connection.prepareStatement(query);
 		if(pstmt==null){
-			System.out.println("pstmt is null");
+			logger.error("pstmt is null");
 		}
 		ResultSet rs=pstmt.executeQuery();
 		while(rs.next())
@@ -34,8 +35,8 @@ public class ItemDetailsMapper
 			id.setAddedDate(rs.getString(4));
 			id.setPrice(rs.getInt(5));
 			li.add(id);
-			System.out.println(li);
-			System.out.println("---------");
+			logger.info(li);
+			logger.info("---------");
 		}
 		
 		

@@ -1,8 +1,11 @@
 package RestfulWebServices.DigitalShoppingCart;
+import org.apache.log4j.Logger;
+
 import java.sql.*;
 
 public class DbmsConnection {
 	Connection con;
+	final static Logger logger = Logger.getLogger(DbmsConnection.class);
 	public Connection getConnection()
 	{
 		try{
@@ -18,13 +21,13 @@ public class DbmsConnection {
 			
 			if(null==con)
 			{
-				System.out.println("connection is null in connection class");
+				logger.error("connection is null in connection class");
 			}
 			return con;
 		}
 		catch(Exception ex){
-			System.out.println("exception caught in connection  "+ex);
-			System.out.println("/n new ");
+			logger.error("exception caught in connection  "+ex);
+			logger.error("/n new ");
 		}
 		return con;
 	}
