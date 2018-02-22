@@ -15,7 +15,7 @@ public class ResourceForAll {
 	ItemDetailsMapper g = new ItemDetailsMapper();
 	final static Logger logger = Logger.getLogger(Log4jExample.class);
 	@GET
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public List<ItemsDetails> getItemsDetails() {
 
 		List<ItemsDetails> li = new ArrayList<ItemsDetails>();
@@ -38,7 +38,7 @@ public class ResourceForAll {
 	@POST
 	@Path("/RegisteringDetails")
 	// @Consumes(MediaType.APPLICATION_JSON)
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public RegistrationClass SetRegistrationDetails(RegistrationClass r1) {
 		// r1.create(r1);
 		logger.info(r1);
@@ -46,5 +46,23 @@ public class ResourceForAll {
 		rdb.addCoustomer(r1);
 		return r1;
 
+	}
+	@GET
+	@Path("/Product")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Product getProduct()
+	{
+		//Product p1=new Product();
+		ProductMapper pm=new ProductMapper();
+		return pm.getDetails();
+		
+	}
+	@GET
+	@Path("/Products")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Product> getProducts()
+	{
+		List<Product> li=new ArrayList<Product>();
+		return li;
 	}
 }

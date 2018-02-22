@@ -7,11 +7,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="ValidRegistration.js"></script>
         <script src="angular.js"></script>
+        
         <link rel="stylesheet" type="text/css" href="HomePageStyle.css">
        <script type="text/javascript">
 		var app=angular.module("myModule",[]);
-		app.controller("myController",function($scope,$http,$log){
+		
+		app.controller("myController",function($scope,$http,$window){
 		var emp={name:'santhosh'};
+		
 		$scope.emp=emp;
 
 
@@ -22,16 +25,19 @@
 						Password:'',
 						PhoneNumber:''
 				};
+		
 		$scope.RegisterCustomerDetails=function(){
     		$http({
     			method :'POST',
     			url : 'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/RegisteringDetails',
     			data : angular.toJson($scope.Customer),
     			headers:{'Content-Type':'application/json'}
-    		}).then();
-    		
+    		}).then(function (response)
+    				{
+    					$window.location.href='Registered.html';
+    				});
     	}
-
+		
 		
 	});
 
@@ -47,11 +53,12 @@
 	</div>
        
         <div class="content">
+       
     <center><h1>Registration Page</h1></center>
     
    <div >
     
-    <form ng-submit="RegisterCustomerDetails()"  >
+    <form ng-submit="RegisterCustomerDetails()" >
    
         <table align="center">
             <tr>

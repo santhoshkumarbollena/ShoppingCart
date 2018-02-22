@@ -11,11 +11,20 @@
  var app=angular.module("MyModule",[]);
  app.controller("MyController",function ($scope)
 		 {
-	 		$http({
-	 			
-	 		});	
-	 		}
-		 });
+	 
+	 demo();
+	 function demo(){
+	 $http({
+		 method:'GET',
+		 url:'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/Product',
+		 
+	 }).then(function (response){
+		 $scope.elemenst=reponse.data;
+	 }
+	 }
+		 })
+	 
+	 	
 </script>
 </head>
 <body>
@@ -31,12 +40,12 @@
 			<table align="center">
 				<tr>
 					<td>Enter Units:</td>
-					<td><input type="text" name="units" ng-model="demo.units"
-						ng-init="demo.units=1 "></td>
+					<td><input type="text" name="units" ng-model="element.NoOfunits"
+						></td>
 				</tr>
 				<tr>
-					<th ng-init="demo.price=12">The Cost For {{demo.units}} units
-						is {{demo.price*demo.units}}</th>
+					<th ng-repeat="element in elements">The Cost For {{element.NoOfunits}} of  {{element.units}}
+						is {{element.price }}</th>
 				</tr>
 				<tr>
 					<th><input type="button" class="registerButton"
