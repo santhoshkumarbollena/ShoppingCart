@@ -41,7 +41,7 @@ public class ItemsDetails {
 	public void setAddedDate(String addedDate) {
 		AddedDate = addedDate;
 	}
-	@XmlElement(name="price")
+	
 	public int getPrice() {
 		return price;
 	}
