@@ -3,39 +3,58 @@ package RestfulWebServices.DigitalShoppingCart;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 @XmlRootElement
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class Product {
-	String name="";
+	String CustomerId="";
+	String OrderId="";
+	String Name="";
 	int NoOfunits;
-	String units="";
-	int price=0;
-	
+	String Units="";
+	int Price;
+	@XmlElement(name="CustomerId")
+	public String getCustomerId() {
+		return CustomerId;
+	}
+	public void setCustomerId(String customerId) {
+		CustomerId = customerId;
+	}
+	@XmlElement(name="OrderId")
+	public String getOrderId() {
+		return OrderId;
+	}
+	public void setOrderId(String orderId) {
+		OrderId = orderId;
+	}
+	@XmlElement(name="Name")
+	public String getName() {
+		return Name;
+	}
+	public void setName(String name) {
+		Name = name;
+	}
+	@XmlElement(name="NoOfunits")
 	public int getNoOfunits() {
 		return NoOfunits;
 	}
 	public void setNoOfunits(int noOfunits) {
 		NoOfunits = noOfunits;
 	}
-	@XmlElement(name="name")
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	@XmlElement(name="units")
+	@XmlElement(name="Units")
 	public String getUnits() {
-		return units;
+		return Units;
 	}
 	public void setUnits(String units) {
-		this.units = units;
+		Units = units;
 	}
-	@XmlElement(name="price")
+	@XmlElement(name="Price")
 	public int getPrice() {
-		return price;
+		return Price;
 	}
 	public void setPrice(int price) {
-		this.price = price;
+		Price = price;
 	}
-	
+		
 }

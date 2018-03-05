@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 @Path("/ResourceForAll")
 public class ResourceForAll {
 	ItemDetailsMapper g = new ItemDetailsMapper();
-	final static Logger logger = Logger.getLogger(Log4jExample.class);
+	final static Logger logger = Logger.getLogger(ResourceForAll.class);
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<ItemsDetails> getItemsDetails() {
@@ -45,6 +45,19 @@ public class ResourceForAll {
 		RegisteringDetailsToDb rdb = new RegisteringDetailsToDb();
 		rdb.addCoustomer(r1);
 		return r1;
+
+	}
+	@POST
+	@Path("/AddingToCart")
+	// @Consumes(MediaType.APPLICATION_JSON)
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Product AddingToCart(Product p1) {
+		// r1.create(r1);
+		logger.info(p1.getName());
+		System.out.println(p1.getName());
+		Cart c = new Cart();
+		 c.AddProductToCart(p1);
+		return p1;
 
 	}
 	@GET
