@@ -6,3 +6,21 @@
 2018-03-05 21:05:20 ERROR Cart:37 - exception in Cart calss
 2018-03-05 21:05:47 ERROR Cart:37 - exception in Cart calssjava.sql.SQLException: Column count doesn't match value count at row 1
 2018-03-05 21:07:25 ERROR Cart:38 - exception in Cart calssjava.sql.SQLException: No value specified for parameter 6
+2018-03-05 23:51:09 ERROR GetPrice:31 - Exception in GetPricejava.sql.SQLException: Illegal operation on empty result set.
+2018-03-05 23:51:35 ERROR GetPrice:31 - Exception in GetPricejava.sql.SQLException: Illegal operation on empty result set.
+2018-03-05 23:51:48 ERROR GetPrice:31 - Exception in GetPricejava.sql.SQLException: Illegal operation on empty result set.
+2018-03-05 23:52:20 ERROR GetPrice:31 - Exception in GetPricejava.sql.SQLException: Before start of result set
+2018-03-05 23:52:33 ERROR GetPrice:31 - Exception in GetPricejava.sql.SQLException: Column Index out of range, 3 > 1. 
+2018-03-05 23:53:18 ERROR GetPrice:31 - Exception in GetPricejava.sql.SQLException: Before start of result set
+2018-03-05 23:54:18 ERROR GetPrice:31 - Exception in GetPricejava.sql.SQLException: Column Index out of range, 3 > 1. 
+2018-03-05 23:55:12 ERROR GetPrice:31 - Exception in GetPricejava.sql.SQLException: Column Index out of range, 2 > 1. 
+2018-03-05 23:55:21 INFO  GetPrice:29 - 12
+2018-03-06 23:46:29 INFO  LoggingAuth:22 - bollenasanthosh@gmail.com
+2018-03-06 23:46:29 INFO  LoggingAuth:23 - demo123
+2018-03-06 23:50:33 INFO  LoggingAuth:31 - bollenasanthosh@gmail.com
+2018-03-06 23:52:05 INFO  LoggingAuth:31 - bollenasanthosh@gmail.com
+2018-03-06 23:52:05 INFO  LoggingAuth:31 - bharathbollena@gmail.com
+2018-03-06 23:53:02 INFO  LoggingAuth:31 - bollenasanthosh@gmail.com
+2018-03-06 23:53:02 INFO  LoggingAuth:31 - bharathbollena@gmail.com
+2018-03-06 23:53:02 INFO  LoggingAuth:34 - demo123
+2018-03-06 23:53:02 INFO  LoggingAuth:34 - 9676434734

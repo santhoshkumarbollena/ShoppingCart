@@ -17,16 +17,31 @@
 		
 		$scope.emp=emp;
 
-		$scope.Product={
+		var Product={
 				"CustomerId": "cust3",
 		        "OrderId":"Order3",
 		        "Name":"cherry",
-		        "NoOfunits":20,
+		        "NoOfunits":1,
 		        "Units":"kgs",
-		        "Price":10
+		        "Price":0
 		};
 		
+		$scope.Product=Product;
+		$scope.Price=0;
 		
+		
+		$scope.GettingPrice=function(){
+    		$http({
+    			method :'GET',
+    			url : 'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/GetPrice',
+    			
+    		}).then(function (response)
+    				{
+    			$scope.Product.Price=response.data;
+    				});
+    	}
+	
+	
 		$scope.AddingToCart=function(){
     		$http({
     			method :'POST',
@@ -58,18 +73,18 @@
     
     <form ng-submit="AddingToCart()" >
    	<div>
+   
 			<img alt="Cherry" src="project images/fruits/cherry.jpg"
 				class="center">
 			<h3 align="center">Cherry</h3>
 			<table align="center">
 				<tr>
 					<td>Enter Units:</td>
-					<td><input type="text" name="units" ng-model="Product.NoOfUnits"
-						></td>
+					<td><input type="number" name="units" min="1" max="100" ng-model="Product.NoOfunits"></td>
 				</tr>
 				<tr>
-					<th >The Cost For {{Product.NoOfunits}} of  {{Product.Units}}
-						is {{Product.Price}}</th>
+					<th ng-init="GettingPrice()" ng-init="Product.Price=(Product.Price-0)*Product.NoOfunits">The Cost For {{Product.NoOfunits}}   {{Product.Units}}
+						is {{(Product.Price-0)*Product.NoOfunits}}   </th>
 				</tr>
 				<tr>
 				

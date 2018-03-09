@@ -19,6 +19,7 @@
 
 
 		$scope.Customer={
+						UserName:''
 						FirstName:'',
 						LastName:'',
 						Email:'',
@@ -61,6 +62,13 @@
     <form ng-submit="RegisterCustomerDetails()" >
    
         <table align="center">
+          <tr>
+                <td><b>User Name:</b></td>
+                <td><input type="text" id="username" name="username12" maxlength="30" onkeyup="userln()" ng-model="Customer.UserName" required></td>
+                <tr><td></td>
+                <td>  <label id="labelun"></label></td>
+                </tr>
+            </tr>
             <tr>
                 <td ><b>First Name:</b></td>
                 <td ><input type="text" id="firstname" name="firstname12" onkeyup="textfn()" maxlength="30" ng-model="Customer.FirstName" required></td>
@@ -76,6 +84,7 @@
                 <td>  <label id="labelln"></label></td>
                 </tr>
             </tr>
+            
             <tr>
                 <td><b>E-mail:</b></td>
                 <td><input type="text" id="email1" name="email123"  maxlength="30" onkeyup="email12()" ng-model="Customer.Email" required></td>

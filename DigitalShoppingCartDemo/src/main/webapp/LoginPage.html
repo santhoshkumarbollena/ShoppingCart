@@ -1,31 +1,85 @@
 <!DOCTYPE html>
-<html lang="en"  ng-app>
+<html  ng-app="myModule" ng-controller="myController">
 <head>
 <meta charset="ISO-8859-1">
 <title>Login Page</title>
 <script src="angular.js"></script>
 <link rel="stylesheet" type="text/css" href="HomePageStyle.css">
 
+<script type="text/javascript">
+		var app=angular.module("myModule",[]);
+		
+		app.controller("myController",function($scope,$http,$window,$rootScope){
+		var emp={name:'santhosh'};
+		$scope.emp=emp;
+		$scope.UserName=[];
+		$scope.Password=[];
+		$scope.User={
+						Password:''
+				};
+		$scope.LoggingInInf=function(){
+			$http({
+    			method :'GET',
+    			url : 'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/LoggingInUserName'
+    		}).then(function (response)
+    				{
+    					$scope.UserName=response.data;
+    				});
+    		$http({
+    			method :'GET',
+    			url : 'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/LoggingIn'
+    		}).then(function (response)
+    				{
+    					$scope.Password=response.data;
+    					$scope.len=$scope.Password.length;
+    				});
+    	}
+		$scope.LoggingIn=function()
+		{ var f=false;
+			for(var i=0;i<$scope.len;i++){
+    			if($scope.EmailID==$scope.UserName[i]&&$scope.PasswordID==$scope.Password[i]){
+    				$window.alert("logged in");
+    				$window.alert($scope.UserName[i]);
+    				$window.location.href="LoggedIn.html";
+    				$rootScope.Loggedin=true;
+    				$rootScope.Customer=$scope.UserName[i];
+    				f=true;
+    			}
+    		}
+			if(f==false)
+				{
+				$window.alert("UserName or Password Incorrect");
+				}
+		}
+		//out of function
+	});
+
+</script>
+          
+
 </head>
 <body >
 <div class="Wrapper">
 			<header ng-include="'Header.html'"></header>
 			<div class="content">
-				<h1 align="center">Login Page</h1>
+				<h1 align="center">Login Page</h1><p ng-model="Verify"></p>
+				<form ng-submit="LoggingIn()">
 				<table align="center">
 					<tr>
 						<td><b>UserName:</b></td>
-						<td><input type="text" name="UserName" required></td>
+						<td><input type="text" name="UserName" ng-model="EmailID"required></td>
 					</tr>
 					<tr>
 						<td><b>Password:</b></td>
-						<td><input type="password" name="Password" required></td>
+						<td><input type="password" name="Password" ng-model="PasswordID" required></td>
 					</tr>
 					<tr >
-					<td><input type="submit" class="registerButton" value="Login"></td>
+					<td ng-init="LoggingInInf()"><input type="submit" class="registerButton" value="Login"></td>
 					<td><input type="reset" class="registerButton" value="Reset"></td>
 					</tr>
 				</table>
+				</form>
+				
 			</div>
 			<footer ng-include="'Footer.html'"></footer>
 </div>

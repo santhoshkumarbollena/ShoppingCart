@@ -61,6 +61,35 @@ public class ResourceForAll {
 
 	}
 	@GET
+	@Path("/GetPrice")
+	@Produces(MediaType.APPLICATION_JSON)
+	public int getPrice()
+	{
+		GetPrice gt=new GetPrice();
+		return gt.getPrice();
+		
+	}
+	@GET
+	@Path("/LoggingIn")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<String> Authenticate()
+	{
+		LoggingAuth la=new LoggingAuth();
+		
+		return la.VerifyLogin();
+		
+	}
+	@GET
+	@Path("/LoggingInUserName")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<String> AuthenticateU()
+	{
+		LoggingAuth la=new LoggingAuth();
+		
+		return la.VerifyLoginU();
+		
+	}
+	@GET
 	@Path("/Product")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Product getProduct()
