@@ -19,14 +19,44 @@
 
 
 		$scope.Customer={
-						UserName:''
+						UserName:'',
 						FirstName:'',
 						LastName:'',
 						Email:'',
 						Password:'',
 						PhoneNumber:''
 				};
-		
+		$scope.registered=false;
+		$scope.UserNamev=[];
+		$scope.labelUser="";
+		$scope.UserNameVal=function()
+		{
+			$http({
+    			method :'GET',
+    			url : 'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/UserNameValidation'
+    		}).then(function (response)
+    				{
+    					$scope.UserNamev=response.data;
+    					$scope.len=$scope.UserNamev.length;
+    				});
+			$scope.labelUser="";
+			$scope.hide="true";
+			for(var i=0;i<$scope.len;i++){
+				
+				if($scope.UserNamev[i]==$scope.Customer.UserName)
+					{
+					$scope.labelUser="UserName already used";
+					$scope.hide="false";
+					//$window.alert("UserName Already Exist");
+					
+					}
+				
+				
+				
+			}
+			
+			
+		}
 		$scope.RegisterCustomerDetails=function(){
     		$http({
     			method :'POST',
@@ -35,6 +65,7 @@
     			headers:{'Content-Type':'application/json'}
     		}).then(function (response)
     				{
+    					$scope.registered=true;
     					$window.location.href='Registered.html';
     				});
     	}
@@ -64,9 +95,9 @@
         <table align="center">
           <tr>
                 <td><b>User Name:</b></td>
-                <td><input type="text" id="username" name="username12" maxlength="30" onkeyup="userln()" ng-model="Customer.UserName" required></td>
+                <td><input type="text" id="username" name="username12" maxlength="30" onkeyup="userln()" ng-keyup="UserNameVal()" ng-model="Customer.UserName" required></td>
                 <tr><td></td>
-                <td>  <label id="labelun"></label></td>
+                <td> {{labelUser}} <label id="labelun" ng-if="hide"></label></td>
                 </tr>
             </tr>
             <tr>

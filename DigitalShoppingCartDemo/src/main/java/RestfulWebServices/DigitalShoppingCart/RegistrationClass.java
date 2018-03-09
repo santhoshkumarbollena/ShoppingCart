@@ -10,6 +10,15 @@ public class RegistrationClass {
 	String Email = "";
 	String Password = "";
 	String PhoneNumber = "";
+	String UserName="";
+	@XmlElement(name="UserName")
+	public String getUserName() {
+		return UserName;
+	}
+
+	public void setUserName(String userName) {
+		UserName = userName;
+	}
 
 	@XmlElement(name = "FirstName")
 	public String getFirstName() {

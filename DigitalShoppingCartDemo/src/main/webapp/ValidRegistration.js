@@ -1,6 +1,21 @@
  var a,b,c,l;
-            //firstname validation
+ 
+            //UserName validation
             var color;
+            function userln()
+            {
+                var un="username";
+                var label="labelun";
+                var x=document.getElementById(un).value;
+                
+               if(!x.match(/^[a-zA-Z0-9]{6,}$/)){
+                    procces(x,"min 6 characters ","red",label);
+                    return false;
+                }
+               procces(x,"valid Username","green",label);
+               return true;
+            }
+            //firstname validation
             function textfn()
             {
                 var fn="firstname";
@@ -101,5 +116,6 @@
             	document.getElementById("labelmail").innerHTML="";
             	document.getElementById("labelln").innerHTML="";
             	document.getElementById("labelfn").innerHTML="";
+            	document.getElementById("labelun").innerHTML="";
             }
            

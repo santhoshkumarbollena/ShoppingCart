@@ -41,7 +41,7 @@ public class ResourceForAll {
 	@Produces({ MediaType.APPLICATION_JSON })
 	public RegistrationClass SetRegistrationDetails(RegistrationClass r1) {
 		// r1.create(r1);
-		logger.info(r1);
+		logger.info(r1.getUserName());
 		RegisteringDetailsToDb rdb = new RegisteringDetailsToDb();
 		rdb.addCoustomer(r1);
 		return r1;
@@ -88,6 +88,14 @@ public class ResourceForAll {
 		
 		return la.VerifyLoginU();
 		
+	}
+	@GET
+	@Path("/UserNameValidation")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<String> RegisterUserName()
+	{
+		RegisteringDetailsToDb rs=new RegisteringDetailsToDb();
+		return rs.getUserNamefromDb();
 	}
 	@GET
 	@Path("/Product")
