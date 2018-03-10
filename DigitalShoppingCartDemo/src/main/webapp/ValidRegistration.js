@@ -9,10 +9,10 @@
                 var x=document.getElementById(un).value;
                 
                if(!x.match(/^[a-zA-Z0-9]{6,}$/)){
-                    procces(x,"min 6 characters ","red",label);
+                    procces(x,"Invalid username ","red",label);
                     return false;
                 }
-               procces(x,"valid Username","green",label);
+               procces(x,"","green",label);
                return true;
             }
             //firstname validation
@@ -104,7 +104,7 @@
             
             function procces( a,b,c,l)
             {
-                document.getElementById(l).innerHTML=a+" is "+b;
+                document.getElementById(l).innerHTML=a+"  "+b;
                 document.getElementById(l).style.color=c;
                 color=c;
             }

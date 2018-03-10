@@ -4,12 +4,13 @@
 <meta charset="ISO-8859-1">
 <title>Login Page</title>
 <script src="angular.js"></script>
+<script src="angular-cookies.js"></script>
 <link rel="stylesheet" type="text/css" href="HomePageStyle.css">
 
 <script type="text/javascript">
-		var app=angular.module("myModule",[]);
+		var app=angular.module("myModule",['ngCookies']);
 		
-		app.controller("myController",function($scope,$http,$window,$rootScope){
+		app.controller("myController",function($scope,$http,$window,$rootScope,$cookies){
 		var emp={name:'santhosh'};
 		$scope.emp=emp;
 		$scope.UserName=[];
@@ -35,15 +36,21 @@
     				});
     	}
 		$scope.LoggingIn=function()
+		//$scope.C=$cookies.get("Customer");
 		{ var f=false;
 			for(var i=0;i<$scope.len;i++){
     			if($scope.EmailID==$scope.UserName[i]&&$scope.PasswordID==$scope.Password[i]){
     				$window.alert("logged in");
     				$window.alert($scope.UserName[i]);
-    				$window.location.href="LoggedIn.html";
-    				$rootScope.Loggedin=true;
-    				$rootScope.Customer=$scope.UserName[i];
+    				
+    				//$rootScope.Loggedin=true;
+    				//$rootScope.Customer=$scope.UserName[i];
+    				var name=$scope.UserName[i];
+    				$cookies.put("Customer",name);
+    				$cookies.put("LoggedIn",true);
+    				$window.alert($cookies.get("Customer"));
     				f=true;
+    				$window.location.href="LoggedIn.html";
     			}
     		}
 			if(f==false)
@@ -66,7 +73,7 @@
 				<form ng-submit="LoggingIn()">
 				<table align="center">
 					<tr>
-						<td><b>UserName:</b></td>
+						<td><b>UserName:{{C}}</b></td>
 						<td><input type="text" name="UserName" ng-model="EmailID"required></td>
 					</tr>
 					<tr>

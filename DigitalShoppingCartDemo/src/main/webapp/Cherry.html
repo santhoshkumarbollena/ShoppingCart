@@ -7,12 +7,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="ValidRegistration.js"></script>
         <script src="angular.js"></script>
-        
+        <script src="angular-cookies.js"></script>
         <link rel="stylesheet" type="text/css" href="HomePageStyle.css">
        <script type="text/javascript">
-		var app=angular.module("myModule",[]);
+		var app=angular.module("myModule",['ngCookies']);
 		
-		app.controller("myController",function($scope,$http,$window){
+		app.controller("myController",function($scope,$http,$window,$cookies){
 		var emp={name:'santhosh'};
 		
 		$scope.emp=emp;
@@ -22,10 +22,11 @@
 		        "OrderId":"Order3",
 		        "Name":"cherry",
 		        "NoOfunits":1,
-		        "Units":"kgs",
+		        "Units":"peice",
 		        "Price":0
 		};
-		
+		$scope.user=$cookies.get("Customer");
+		$scope.log=$cookies.get("LoggedIn");		
 		$scope.Product=Product;
 		$scope.Price=0;
 		
@@ -43,6 +44,13 @@
 	
 	
 		$scope.AddingToCart=function(){
+			$window.alert($scope.log);
+			if($scope.log=="false"){
+				$window.alert("Log in First");
+				$window.location.href="LoginPage.html";
+			}
+			else
+			{
     		$http({
     			method :'POST',
     			url : 'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/AddingToCart',
@@ -53,7 +61,7 @@
     					$window.location.href='AddedToCart.html';
     				});
     	}
-		
+		}
 		
 	});
 
@@ -93,7 +101,7 @@
 						
 				</tr>
 			</table>
-
+{{log}}{{user}}
 
 		</div>
    
