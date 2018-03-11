@@ -1,15 +1,40 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="angular.js"></script>
+<script src="angular-cookies.js"></script>
+<script type="text/javascript">
+var app=angular.module("myModule",['ngCookies']);
 
-<div class="heading">
+app.controller("myController",function($scope,$http,$window,$cookies){
+	//$scope.log=$cookies.get("LoggedIn");
+	//$scope.user=$cookies.get("Customer");
+	//$scope.log=false;
+	
+	//$window.alert($scope.log);
+});
+</script>
+</head>
+<body ng-app="myModule" ng-controller="myController" >
+
+<div class="heading" >
 			<h1>Digital Shopping Cart</h1>	
 		</div>
-<div class="navigation">
+<div class="navigation" >
 			
 			<button class="HomeButtons"><a href="home.html">Home</a></button>
 			<button class="HomeButtons"><a href="AboutUs.html">About Us</a></button>
 			<input type="text" name="searchBar" placeholder="search..." class="searchclass">
 			<button class="HomeButtons">Search</button>
 			
-			<button class="HomeButtons" ><a href="RegistrationPage.html">Register</a></button>
-			<button class="HomeButtons"><a href="LoginPage.html">Login</a></button>
-			<button class="HomeButtons"><a href="Cart.html">Cart</a></button>
+			<button class="HomeButtons" ng-hide="logo"><a href="RegistrationPage.html">Register</a></button>
+			<button class="HomeButtons"  ng-hide="logo" ><a href="LoginPage.html">Login</a></button>
+			<button class="HomeButtons"  ng-show="logo"><a href="Cart.html">Cart</a></button>
+			 <button class="HomeButtons" ng-show="logo"><a href="LoggedIn.html">{{user}}</a></button>
 		</div>
+
+
+</body>
+</html>

@@ -40,15 +40,15 @@
 		{ var f=false;
 			for(var i=0;i<$scope.len;i++){
     			if($scope.EmailID==$scope.UserName[i]&&$scope.PasswordID==$scope.Password[i]){
-    				$window.alert("logged in");
-    				$window.alert($scope.UserName[i]);
+    				//$window.alert("logged in");
+    				//$window.alert($scope.UserName[i]);
     				
     				//$rootScope.Loggedin=true;
     				//$rootScope.Customer=$scope.UserName[i];
     				var name=$scope.UserName[i];
     				$cookies.put("Customer",name);
     				$cookies.put("LoggedIn",true);
-    				$window.alert($cookies.get("Customer"));
+    				//$window.alert($cookies.get("Customer"));
     				f=true;
     				$window.location.href="LoggedIn.html";
     			}

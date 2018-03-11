@@ -13,6 +13,14 @@
 		var app=angular.module("myModule",['ngCookies']);
 		
 		app.controller("myController",function($scope,$http,$window,$cookies){
+			$scope.log=$cookies.get("LoggedIn");
+			if($scope.log=="false"){
+				$scope.logo=false;
+			}
+			else{
+				$scope.logo=true;
+			}
+			$scope.user=$cookies.get("Customer");
 		var emp={name:'santhosh'};
 		
 		$scope.emp=emp;
@@ -44,7 +52,7 @@
 	
 	
 		$scope.AddingToCart=function(){
-			$window.alert($scope.log);
+			//$window.alert($scope.log);
 			if($scope.log=="false"){
 				$window.alert("Log in First");
 				$window.location.href="LoginPage.html";
@@ -101,7 +109,7 @@
 						
 				</tr>
 			</table>
-{{log}}{{user}}
+
 
 		</div>
    

@@ -12,6 +12,18 @@
 var app=angular.module("myModule",['ngCookies']);
 app.controller("myController",function ($scope,$cookies,$window)
 		{
+	$scope.log=$cookies.get("LoggedIn");
+	if($scope.log=="false"){
+		$scope.logo=false;
+	}
+	else{
+		$scope.logo=true;
+	}
+	$scope.user=$cookies.get("Customer");
+			$scope.logging=$cookies.get("LoggedIn");
+			if($scope.logging=="false"){
+				$window.location.href="LoginPage.html";
+			}
 			$scope.Customer=$cookies.get("Customer");
 			$scope.logout=function()
 			{

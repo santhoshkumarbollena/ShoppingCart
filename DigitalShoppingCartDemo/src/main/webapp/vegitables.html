@@ -1,11 +1,29 @@
 <!DOCTYPE html>
-<html lang="en"  ng-app>
+<html ng-app="myModule" ng-controller="myController">
 <head>
 <meta charset="ISO-8859-1">
 <title>Vegitables</title>
 <link rel="stylesheet" type="text/css" href="SubPagesStyle.css">
 <script src="angular.js"></script>
 <script src="Header.js"></script>
+    <script src="angular-cookies.js"></script>
+
+<script type="text/javascript">
+var app=angular.module("myModule",['ngCookies']);
+
+app.controller("myController",function($scope,$http,$window,$cookies){
+	$scope.log=$cookies.get("LoggedIn");
+	if($scope.log=="false"){
+		$scope.logo=false;
+	}
+	else{
+		$scope.logo=true;
+	}
+	$scope.user=$cookies.get("Customer");
+	//$scope.log=false;
+	//$window.alert($scope.log);
+});
+</script>
 </head>
 <body>
 	<div class="Wrapper">		
