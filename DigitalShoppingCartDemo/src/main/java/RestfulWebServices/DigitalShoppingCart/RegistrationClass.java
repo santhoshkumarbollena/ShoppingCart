@@ -11,6 +11,16 @@ public class RegistrationClass {
 	String Password = "";
 	String PhoneNumber = "";
 	String UserName="";
+	String Address="";
+	@XmlElement(name="Address")
+	public String getAddress() {
+		return Address;
+	}
+
+	public void setAddress(String address) {
+		Address = address;
+	}
+
 	@XmlElement(name="UserName")
 	public String getUserName() {
 		return UserName;

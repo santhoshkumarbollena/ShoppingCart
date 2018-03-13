@@ -12,10 +12,7 @@ public class RegisteringDetailsToDb {
 	DbmsConnection con=new DbmsConnection();
 	RegistrationClass rc=new RegistrationClass();
 	DbmsQuerys q=new DbmsQuerys();
-	public void RegisteringDetails() 
-	{
-		
-	}
+	
 	
 	public void addCoustomer(RegistrationClass r1) {
 		registerc.add(r1);
@@ -29,6 +26,7 @@ public class RegisteringDetailsToDb {
 			pstmt.setString(4, r1.getEmail());
 			pstmt.setString(5, r1.getPassword());
 			pstmt.setString(6, r1.getPhoneNumber());
+			pstmt.setString(7, r1.getAddress());
 			int i=pstmt.executeUpdate();
 			if(i!=0){
 				logger.info("registered succefully");
@@ -55,5 +53,34 @@ public class RegisteringDetailsToDb {
 		}
 		logger.info(Username);
 		return Username;
+	}
+
+	public List<RegistrationClass> getDetailsOfCustomer(String UserName) {
+		String query="select UserName ,FirstName ,LastName ,Email ,PhoneNumber ,Address  from CustomerDetails";
+		List<RegistrationClass> Details=new ArrayList<RegistrationClass>();
+		try{
+		PreparedStatement pstmt=con.getConnection().prepareStatement(query);
+		ResultSet rs=pstmt.executeQuery();
+		int i=0;
+		while(rs.next()){
+			if(rs.getString(1).equals(UserName)){
+			rc.setUserName(rs.getString(1));
+			rc.setFirstName(rs.getString(2));
+			rc.setLastName(rs.getString(3));
+			rc.setEmail(rs.getString(4));
+			rc.setPhoneNumber(rs.getString(5));
+			rc.setAddress(rs.getString(6));
+			
+			Details.add(i,rc);
+			
+			i++;
+			}
+		}
+		}catch(Exception ex){
+			logger.error("Error in UserName Getting From Db to verify In Registration Page");
+		}
+		logger.info(Details);
+		return Details;
+		
 	}
 }

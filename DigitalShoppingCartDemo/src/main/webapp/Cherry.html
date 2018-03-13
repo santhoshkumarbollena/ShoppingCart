@@ -5,20 +5,21 @@
         <title>Registration Page</title>
         <meta charset="ISO-8859-1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="ValidRegistration.js"></script>
+
         <script src="angular.js"></script>
         <script src="angular-cookies.js"></script>
+        <script src="ValidRegistration.js"></script>
         <link rel="stylesheet" type="text/css" href="HomePageStyle.css">
        <script type="text/javascript">
 		var app=angular.module("myModule",['ngCookies']);
 		
 		app.controller("myController",function($scope,$http,$window,$cookies){
 			$scope.log=$cookies.get("LoggedIn");
-			if($scope.log=="false"){
-				$scope.logo=false;
+			if($scope.log=="true"){
+				$scope.logo=true;
 			}
 			else{
-				$scope.logo=true;
+				$scope.logo=false;
 			}
 			$scope.user=$cookies.get("Customer");
 		var emp={name:'santhosh'};
@@ -26,7 +27,7 @@
 		$scope.emp=emp;
 
 		var Product={
-				"CustomerId": "cust3",
+				"CustomerId": $cookies.get("Customer"),
 		        "OrderId":"Order3",
 		        "Name":"cherry",
 		        "NoOfunits":1,
@@ -96,11 +97,11 @@
 			<table align="center">
 				<tr>
 					<td>Enter Units:</td>
-					<td><input type="number" name="units" min="1" max="100" ng-model="Product.NoOfunits"></td>
+					<td><input type="number" name="units" min="0" max="100" step="0.01" ng-model="Product.NoOfunits"></td>
 				</tr>
 				<tr>
 					<th ng-init="GettingPrice()" ng-init="Product.Price=(Product.Price-0)*Product.NoOfunits">The Cost For {{Product.NoOfunits}}   {{Product.Units}}
-						is {{(Product.Price-0)*Product.NoOfunits}}   </th>
+						is {{(Product.Price-0.0)*Product.NoOfunits}}   </th>
 				</tr>
 				<tr>
 				

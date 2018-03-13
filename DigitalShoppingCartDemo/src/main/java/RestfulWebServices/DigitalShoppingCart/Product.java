@@ -11,7 +11,7 @@ public class Product {
 	String CustomerId="";
 	String OrderId="";
 	String Name="";
-	int NoOfunits;
+	double NoOfunits;
 	String Units="";
 	int Price;
 	@XmlElement(name="CustomerId")
@@ -36,10 +36,10 @@ public class Product {
 		Name = name;
 	}
 	@XmlElement(name="NoOfunits")
-	public int getNoOfunits() {
+	public double getNoOfunits() {
 		return NoOfunits;
 	}
-	public void setNoOfunits(int noOfunits) {
+	public void setNoOfunits(double noOfunits) {
 		NoOfunits = noOfunits;
 	}
 	@XmlElement(name="Units")

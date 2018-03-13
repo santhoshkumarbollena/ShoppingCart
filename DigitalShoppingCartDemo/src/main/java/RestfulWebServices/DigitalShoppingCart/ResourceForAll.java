@@ -7,8 +7,10 @@ import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.xml.bind.annotation.XmlElement;
 
 @Path("/ResourceForAll")
 public class ResourceForAll {
@@ -53,7 +55,7 @@ public class ResourceForAll {
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Product AddingToCart(Product p1) {
 		// r1.create(r1);
-		logger.info(p1.getName());
+		logger.info(p1.getNoOfunits());
 		System.out.println(p1.getName());
 		Cart c = new Cart();
 		 c.AddProductToCart(p1);
@@ -69,6 +71,20 @@ public class ResourceForAll {
 		return gt.getPrice();
 		
 	}
+	
+	@GET
+	@Path("/GetCustomerDetails/{UserName}")
+	@Produces(MediaType.APPLICATION_JSON)
+	
+	public List<RegistrationClass> getCustomerDetails(@PathParam("UserName") String UserName)
+	{
+		List<RegistrationClass> r1=new ArrayList<RegistrationClass>();
+		RegisteringDetailsToDb rdb=new RegisteringDetailsToDb();
+		return rdb.getDetailsOfCustomer(UserName);
+		
+	}
+
+
 	@GET
 	@Path("/LoggingIn")
 	@Produces(MediaType.APPLICATION_JSON)

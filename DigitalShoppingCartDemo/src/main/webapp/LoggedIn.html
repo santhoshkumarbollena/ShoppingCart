@@ -10,15 +10,9 @@
 <script src="angular-cookies.js"></script>
 <script type="text/javascript">
 var app=angular.module("myModule",['ngCookies']);
-app.controller("myController",function ($scope,$cookies,$window)
+app.controller("myController",function ($scope,$cookies,$window,$http)
 		{
-	$scope.log=$cookies.get("LoggedIn");
-	if($scope.log=="false"){
-		$scope.logo=false;
-	}
-	else{
-		$scope.logo=true;
-	}
+	
 	$scope.user=$cookies.get("Customer");
 			$scope.logging=$cookies.get("LoggedIn");
 			if($scope.logging=="false"){
@@ -31,6 +25,37 @@ app.controller("myController",function ($scope,$cookies,$window)
 				$cookies.put("LoggedIn",false);
 				$window.location.href="LoginPage.html";
 			}
+
+			
+			$scope.log=$cookies.get("LoggedIn");
+			if($scope.log=="true"){
+				$scope.logo=true;
+			}
+			else{
+				$scope.logo=false;
+			}
+			$scope.getDetails=function(){
+				$scope.Customer={
+						UserName:'',
+						FirstName:'',
+						LastName:'',
+						Email:'',
+						Password:'',
+						PhoneNumber:'',
+						Address:''
+				};
+				var User=$cookies.get("Customer")
+	    		$http({
+	    			method :'GET',
+	    			url : 'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/GetCustomerDetails/'+User,
+	    			
+	    		}).then(function (response)
+	    				{
+	    			$scope.Customer=response.data;
+	    			
+	    				});
+	    		$scope.d=$scope.Customer.UserName;
+	    	}
 		});
 </script>
 </head>
@@ -39,13 +64,44 @@ app.controller("myController",function ($scope,$cookies,$window)
 		<header ng-include="'Header.html'"></header>
 
 	</div  ng-app="MyModule" ng-controller="MyController">
-<center><h1>Logged In Succesfully! {{Customer}}</h1></center>
-	<div class="content">
-	<input type="button" value="log out" ng-click="logout()">
+<center><h1>Welcome  {{user}}</h1></center><div  align="right"><input type="button" value="log out" class="HomeButtons" ng-click="logout()">
 </div>
-		
+	<div class="content">
+	<div ng-init="getDetails()">
 	</div>
 
+<table align="center" ng-repeat="c in Customer">
+	
+	<tr>
+		<td><b>FirstName:</b></td>
+		<td><input type="text" ng-model="c.FirstName"></td>
+		
+	</tr>
+	<tr>
+		<td><b>LastName:</b></td>
+		<td><input type="text" ng-model="c.LastName"></td>
+	
+	</tr>
+	<tr>
+		<td><b>Email:</b></td>
+		<td><input type="text" ng-model="c.Email"></td>
+	
+	</tr><tr>
+		<td><b>Phone Number:</b></td>
+		<td><input type="text" ng-model="c.PhoneNumber"></td>
+	
+	</tr>
+	<tr>
+		<td><b>Address:</b></td>
+		<td><textarea rows="6" cols="50" ng-model="c.Address"></textarea></td>
+		</tr>
+		<tr>
+			<td><input type="button" value="Save" class="registerButton"></td>
+			<td><input type="button" value="Cancel" class="registerButton"></td>
+		</tr>
+</table>
+</div>
+</div>
 <div>
 	<footer ng-include="'Footer.html'"></footer>
 	</div>

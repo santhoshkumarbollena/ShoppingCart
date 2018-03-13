@@ -13,11 +13,11 @@ var app=angular.module("myModule",['ngCookies']);
 
 app.controller("myController",function($scope,$http,$window,$cookies){
 	$scope.log=$cookies.get("LoggedIn");
-	if($scope.log=="false"){
-		$scope.logo=false;
+	if($scope.log=="true"){
+		$scope.logo=true;
 	}
 	else{
-		$scope.logo=true;
+		$scope.logo=false;
 	}
 	$scope.user=$cookies.get("Customer");
 	//$scope.log=false;

@@ -32,7 +32,7 @@ public class Cart {
 		pstmt.setString(1,p1.getCustomerId());
 		pstmt.setString(2,p1.getOrderId());
 		pstmt.setString(3,p1.getName());
-		pstmt.setInt(4,p1.getNoOfunits());
+		pstmt.setDouble(4,p1.getNoOfunits());
 		pstmt.setString(5,p1.getUnits());
 		pstmt.setInt(6,p1.getPrice());
 		int i=pstmt.executeUpdate();

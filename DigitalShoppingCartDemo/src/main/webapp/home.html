@@ -4,9 +4,9 @@
 <meta charset="ISO-8859-1">
 <title>Home Page</title>
 <link rel="stylesheet" type="text/css" href="HomePageStyle.css">
-<script src="Header.js"></script>
+
 <script src="angular.js"></script>
-        <script src="angular-cookies.js"></script>
+<script src="angular-cookies.js"></script>
 
 <script type="text/javascript">
 var app=angular.module("myModule",['ngCookies']);
@@ -16,8 +16,11 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 	if($scope.log=="false"){
 		$scope.logo=false;
 	}
-	else{
+	else if($scope.log=="true"){
 		$scope.logo=true;
+	}
+	else{
+		$scope.log=false;
 	}
 	$scope.user=$cookies.get("Customer");
 	//$scope.log=false;

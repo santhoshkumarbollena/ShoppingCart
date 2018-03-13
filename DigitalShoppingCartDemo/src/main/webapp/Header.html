@@ -26,13 +26,15 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 			
 			<button class="HomeButtons"><a href="home.html">Home</a></button>
 			<button class="HomeButtons"><a href="AboutUs.html">About Us</a></button>
-			<input type="text" name="searchBar" placeholder="search..." class="searchclass">
-			<button class="HomeButtons">Search</button>
+			<!-- <input type="text" name="searchBar" placeholder="search..." class="searchclass">
+			//<button class="HomeButtons">Search</button> -->
 			
 			<button class="HomeButtons" ng-hide="logo"><a href="RegistrationPage.html">Register</a></button>
 			<button class="HomeButtons"  ng-hide="logo" ><a href="LoginPage.html">Login</a></button>
 			<button class="HomeButtons"  ng-show="logo"><a href="Cart.html">Cart</a></button>
-			 <button class="HomeButtons" ng-show="logo"><a href="LoggedIn.html">{{user}}</a></button>
+			 
+			  <button class="HomeButtons" ng-show="logo"><a href="Orders.html">Orders</a></button>
+			  <button class="HomeButtons" ng-show="logo"><a href="LoggedIn.html">Hello,{{user}}</a></button>
 		</div>
 
 

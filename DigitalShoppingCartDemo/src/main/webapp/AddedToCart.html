@@ -1,29 +1,44 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
+<html ng-app="myModule" ng-controller="myController">
 <head>
 <meta charset="ISO-8859-1">
-<title>AddedToCart</title>
+<title>Added To Cart </title>
 <link rel="stylesheet" type="text/css" href="SubPagesStyle.css">
-
 <script src="angular.js"></script>
 <script src="Header.js"></script>
+    <script src="angular-cookies.js"></script>
+
+<script type="text/javascript">
+var app=angular.module("myModule",['ngCookies']);
+
+app.controller("myController",function($scope,$http,$window,$cookies){
+	$scope.log=$cookies.get("LoggedIn");
+	if($scope.log=="true"){
+		$scope.logo=true;
+	}
+	else{
+		$scope.logo=false;
+	}
+	$scope.user=$cookies.get("Customer");
+	//$scope.log=false;
+	//$window.alert($scope.log);
+});
+</script>
 </head>
 <body>
-	<div class="Wrapper">
-		<header ng-include="'Header.html'"></header>
-
-	</div  ng-app="MyModule" ng-controller="MyController">
-<center><h1>Added To Cart Succesfully!</h1></center>
-	<div class="content">
-</div>
+	<div class="Wrapper">		
+			<header ng-include="'Header.html'"></header>
+			
+		</div>
+		<div class="content">
+			<p><h1 align="center">Added to cart succesfully </h1></p>
+			</div>
 		
+		
+		<footer ng-include="'Footer.html'"></footer>
 	</div>
-
-<div>
-	<footer ng-include="'Footer.html'"></footer>
-	</div>
-
-
+	
+	
 
 </body>
 </html>

@@ -11,6 +11,13 @@
 		var app=angular.module("myModule",['ngCookies']);
 		
 		app.controller("myController",function($scope,$http,$window,$rootScope,$cookies){
+			$scope.log=$cookies.get("LoggedIn");
+			if($scope.log=="true"){
+				$scope.logo=true;
+			}
+			else{
+				$scope.logo=false;
+			}
 		var emp={name:'santhosh'};
 		$scope.emp=emp;
 		$scope.UserName=[];
@@ -50,7 +57,7 @@
     				$cookies.put("LoggedIn",true);
     				//$window.alert($cookies.get("Customer"));
     				f=true;
-    				$window.location.href="LoggedIn.html";
+    				$window.location.href="home.html";
     			}
     		}
 			if(f==false)
