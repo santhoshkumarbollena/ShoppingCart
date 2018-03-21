@@ -83,4 +83,26 @@ public class RegisteringDetailsToDb {
 		return Details;
 		
 	}
+
+	public List<RegistrationClass> updateDetailsOfCustomer(RegistrationClass r1,String userName) {
+		try{
+		//	String query="update CustomerDetails set FirstName='Santhuu',LastName='kumarr',Email='boll', PhoneNumber='9999999999',Address='Demo' where UserName='santhosh'";
+		String query="update CustomerDetails set FirstName='"+r1.getFirstName()+"',LastName='"+r1.getLastName()+"',Email='"+r1.getEmail()+"',PhoneNumber='"+r1.getPhoneNumber()+"',Address='"+r1.getAddress()+"' where UserName='"+userName+"';";
+			
+			logger.info(r1.getFirstName());
+			logger.info(r1.getLastName());
+			logger.info(r1.getEmail());
+			logger.info(r1.getPhoneNumber());
+			logger.info(r1.getAddress());
+			PreparedStatement pstmt=con.getConnection().prepareStatement(query);
+			int i=pstmt.executeUpdate();
+			if(i==1)
+			{
+				logger.info("updated succesfully");
+			}
+		}catch(Exception ex){
+			logger.error("error in updatedetails of customer"+ex);
+		}
+		return null;
+	}
 }

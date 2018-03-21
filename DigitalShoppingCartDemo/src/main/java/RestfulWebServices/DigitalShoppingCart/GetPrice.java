@@ -10,7 +10,7 @@ public class GetPrice {
 	
 	
 	final  Logger logger=Logger.getLogger(GetPrice.class);
-	public  int getPrice() {
+	public  int getPrice(String prod) {
 		int  price=0;
 		try{
 		DbmsConnection con=new DbmsConnection();
@@ -18,12 +18,15 @@ public class GetPrice {
 		{
 			logger.error("Connection object is null");
 		}
-		DbmsQuerys query=new DbmsQuerys();
-		PreparedStatement pstmt=con.getConnection().prepareStatement(query.CherryPrice);
+		//DbmsQuerys query=new DbmsQuerys();
+		String query="select name,price from Fruits ";
+		PreparedStatement pstmt=con.getConnection().prepareStatement(query);
 		ResultSet rs=pstmt.executeQuery();
-		rs.next();
-		 price=rs.getInt(1);
+		while(rs.next()){
+			if(rs.getString(1).equals(prod))
+		 price=rs.getInt(2);
 		logger.info(price);
+		}
 		}catch(Exception ex){
 			logger.error("Exception in GetPrice"+ex);
 		}

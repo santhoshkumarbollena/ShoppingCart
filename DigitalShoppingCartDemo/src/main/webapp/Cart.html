@@ -19,23 +19,89 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 		$scope.logo=false;
 	}
 	$scope.user=$cookies.get("Customer");
+	
+	$scope.Cart={
+			"CustomerId": '',
+	        "Name":'',
+	        "NoOfunits":1,
+	        "Units":'',
+	        "Price":1
+	};
+	//$scope.ProductName="";
+	$scope.RemovingProduct=function(ProductName)
+	{
+		var Cust=$cookies.get("Customer");
+		//$window.alert(ProductName);
+		$http({
+			method:'DELETE',
+			url:'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/DeletingFromCart/'+Cust+'/'+ProductName
+		}).then(function(response){
+			$window.location.href="Cart.html";
+		})
+		;
+	}
+	var len=0;
+	$scope.CartProducts=function()
+	{
+		var Cust=$cookies.get("Customer");
+		//$window.alert(Cust);
+		$http({
+			method:'GET',
+			url:'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/CartDetails/'+Cust
+		}).then(function (reponse){
+			$scope.Cart=reponse.data;
+			$scope.len=$scope.Cart.length;
+			len=$scope.len;
+			//$window.alert($scope.len);
+			//$window.alert($scope.len);
+			//$window.alert(len);
+			$scope.Total=0;
+			for(var i=0;i<=$scope.len;i++)
+				{
+					//$window.alert($scope.Cart[i].Price);
+					$scope.Total=$scope.Total+($scope.Cart[i].Price-0.0)*$scope.Cart[i].NoOfunits;
+					//$window.alert($scope.Total);
+					//$window.alert(($scope.Cart[i].Price-0.0)*$scope.Cart[i].NoOfunits);
+					//$window.alert($scope.Total);
+				}
+			
+		});
+		
+	}
 });
 </script>
 </head>
 <body>
 	<div class="Wrapper">
 	<header ng-include="'Header.html'"></header>
-	<div class="content">
-		<table>
+	<div class="content" ng-init="CartProducts()">
+		<table border="1" align="center" >
 			<tr>
 				<th>Name</th>
 				<th>Number Of Units</th>
 				<th>Units</th>
-				<th>Price</th>
+				<th >Price</th>
+				<th>price of single product</th>
+				<th></th>
+			</tr>
+			<tr ng-repeat="Product in Cart">
+				<th>{{Product.Name}}</th>
+				<th><input type="number" ng-model="Product.NoOfunits"></th>
+				<th>{{Product.Units}}</th>
+				<th>{{(Product.Price-0.0)*Product.NoOfunits}}</th>
+				<th>{{Product.Price}}</th>
+				<th><input type="button" value="Remove" ng-click="RemovingProduct(Product.Name)" class="CartButton"></th>
 			</tr>
 			<tr>
 			</tr>
+			<tr >
+				<th  colspan="6">Total Cost:{{Total}}</th>
+			</tr>
+			<tr>
+				<th colspan="6"><input type="button" value="Place Order" class="CartButton"></th>
+			</tr>
 		</table>
+		
 	</div>
 	<footer ng-include="'Footer.html'"></footer>
 	</div>

@@ -4,8 +4,10 @@ import org.apache.log4j.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -63,12 +65,12 @@ public class ResourceForAll {
 
 	}
 	@GET
-	@Path("/GetPrice")
+	@Path("/GetPrice/{Product}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public int getPrice()
+	public int getPrice(@PathParam("Product") String prod)
 	{
 		GetPrice gt=new GetPrice();
-		return gt.getPrice();
+		return gt.getPrice(prod);
 		
 	}
 	
@@ -83,9 +85,58 @@ public class ResourceForAll {
 		return rdb.getDetailsOfCustomer(UserName);
 		
 	}
-
-
 	@GET
+	@Path("/CartDetails/{UserName}")
+	@Produces(MediaType.APPLICATION_JSON)
+	
+	public ArrayList<Product> getCartDetails(@PathParam("UserName") String UserName)
+	{
+		logger.info("demo");
+		ProductMapper pm=new ProductMapper();
+		ArrayList<Product> pro=pm.getCart(UserName);
+		logger.info("\n");
+		logger.info(pro);
+		return pm.getCart(UserName);
+	}
+	@DELETE
+	@Path("/DeletingFromCart/{UserName}/{ProductName}")
+	@Produces(MediaType.APPLICATION_JSON)
+	
+	public boolean deletingItemFromCart(@PathParam("UserName") String UserName,@PathParam("ProductName") String ProductName)
+	{
+		logger.info(ProductName);
+		logger.info(UserName);
+		ProductMapper pm=new ProductMapper();
+		return pm.deleteProductFromCart(UserName,ProductName);
+	}
+	@PUT
+	@Path("/UpdateCustomerDetails/{UserName}")
+	@Produces(MediaType.APPLICATION_JSON)
+	
+	public List<RegistrationClass> updateCustomerDetails(RegistrationClass r1,@PathParam("UserName") String UserName)
+	{
+		RegisteringDetailsToDb rdb=new RegisteringDetailsToDb();
+		return rdb.updateDetailsOfCustomer(r1,UserName);
+		
+	}
+	@GET
+	@Path("/fruitscheakavalability")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<String> fruitscheakavalability()
+	{
+		CheakingAvalabilityOfProduct c1=new CheakingAvalabilityOfProduct();
+		return c1.cheakfruits();
+	}
+	@GET
+	@Path("/GetFruitsPrice")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Integer> fruitsPrice()
+	{
+		GettingPriceInCategery g1=new GettingPriceInCategery();
+		
+		return null;
+	}
+	/*@GET
 	@Path("/LoggingIn")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<String> Authenticate()
@@ -104,6 +155,19 @@ public class ResourceForAll {
 		
 		return la.VerifyLoginU();
 		
+	}
+	*/
+	@POST
+	@Path("/LoggingDetails")
+	// @Consumes(MediaType.APPLICATION_JSON)
+	@Produces({ MediaType.APPLICATION_JSON })
+	public boolean verifyLogingDetails(LoginDetails l1) {
+		// r1.create(r1);
+		logger.info(l1.getUserName());
+		logger.info(l1.getPassword());
+		LoggingMapper lm=new LoggingMapper();
+		return lm.verify(l1);
+
 	}
 	@GET
 	@Path("/UserNameValidation")

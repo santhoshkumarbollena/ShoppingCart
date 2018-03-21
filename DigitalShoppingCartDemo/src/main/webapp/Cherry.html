@@ -28,7 +28,6 @@
 
 		var Product={
 				"CustomerId": $cookies.get("Customer"),
-		        "OrderId":"Order3",
 		        "Name":"cherry",
 		        "NoOfunits":1,
 		        "Units":"peice",
@@ -39,11 +38,11 @@
 		$scope.Product=Product;
 		$scope.Price=0;
 		
-		
+		var prod="cherry";
 		$scope.GettingPrice=function(){
     		$http({
     			method :'GET',
-    			url : 'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/GetPrice',
+    			url : 'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/GetPrice/'+prod,
     			
     		}).then(function (response)
     				{

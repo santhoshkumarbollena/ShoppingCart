@@ -25,7 +25,7 @@
 		$scope.User={
 						Password:''
 				};
-		$scope.LoggingInInf=function(){
+	/* 	$scope.LoggingInInf=function(){
 			$http({
     			method :'GET',
     			url : 'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/LoggingInUserName'
@@ -41,8 +41,51 @@
     					$scope.Password=response.data;
     					$scope.len=$scope.Password.length;
     				});
+    	} */
+    	var f=false;
+    	$scope.Details={
+    		UserName:'',
+    		Password:''
+    	};
+    	$scope.LoggingIn=function(){
+    		//$window.alert($scope.Details.UserName+$scope.Details.Password);
+    		$http({
+    			method:'POST',
+    			url:'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/LoggingDetails',
+    			data:angular.toJson($scope.Details),
+    			header:{'Content-Type':'applicaton/json'}
+    		}).then(function (response){
+    			$scope.LoggedInOrNot=response.data;
+    			//$window.alert($scope.LoggedInOrNot);
+    			if($scope.LoggedInOrNot==true&&$scope.Details.UserName=="admin"){
+
+    				var name=$scope.Details.UserName;
+					$cookies.put("Customer",name);
+					$cookies.put("LoggedIn",true);
+					//$window.alert($cookies.get("Customer"));
+					f=true;
+					$window.location.href="AdminLogin.html";
+		
+    	
+    			}
+    			if($scope.LoggedInOrNot==true&&$scope.Details.UserName!="admin")
+    			{
+    				var name=$scope.Details.UserName;
+					$cookies.put("Customer",name);
+					$cookies.put("LoggedIn",true);
+					//$window.alert($cookies.get("Customer"));
+					f=true;
+					$window.location.href="home.html";
+		
+    			}
+    		if(f==false)
+			{
+			$window.alert("UserName or Password Incorrect");
+			}
+    		});
+    	
     	}
-		$scope.LoggingIn=function()
+		/* $scope.LoggingIn=function()
 		//$scope.C=$cookies.get("Customer");
 		{ var f=false;
 			for(var i=0;i<$scope.len;i++){
@@ -64,7 +107,7 @@
 				{
 				$window.alert("UserName or Password Incorrect");
 				}
-		}
+		} */
 		//out of function
 	});
 
@@ -81,14 +124,14 @@
 				<table align="center">
 					<tr>
 						<td><b>UserName:{{C}}</b></td>
-						<td><input type="text" name="UserName" ng-model="EmailID"required></td>
+						<td><input type="text" name="UserName" ng-model="Details.UserName"required></td>
 					</tr>
 					<tr>
 						<td><b>Password:</b></td>
-						<td><input type="password" name="Password" ng-model="PasswordID" required></td>
+						<td><input type="password" name="Password" ng-model="Details.Password" required></td>
 					</tr>
 					<tr >
-					<td ng-init="LoggingInInf()"><input type="submit" class="registerButton" value="Login"></td>
+					<td ><input type="submit" class="registerButton" value="Login"></td>
 					<td><input type="reset" class="registerButton" value="Reset"></td>
 					</tr>
 				</table>

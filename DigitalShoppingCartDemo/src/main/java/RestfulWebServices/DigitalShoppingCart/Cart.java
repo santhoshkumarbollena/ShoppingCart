@@ -24,17 +24,17 @@ public class Cart {
 			logger.error("exception in prepared statement class");
 		}
 		logger.info(p1.getCustomerId());
-		logger.info(p1.getOrderId());
+		//logger.info(p1.getOrderId());
 		logger.info(p1.getName());
 		logger.info(p1.getNoOfunits());
 		logger.info(p1.getUnits());
 		logger.info(p1.getPrice());
 		pstmt.setString(1,p1.getCustomerId());
-		pstmt.setString(2,p1.getOrderId());
-		pstmt.setString(3,p1.getName());
-		pstmt.setDouble(4,p1.getNoOfunits());
-		pstmt.setString(5,p1.getUnits());
-		pstmt.setInt(6,p1.getPrice());
+		//pstmt.setString(2,p1.getOrderId());
+		pstmt.setString(2,p1.getName());
+		pstmt.setDouble(3,p1.getNoOfunits());
+		pstmt.setString(4,p1.getUnits());
+		pstmt.setInt(5,p1.getPrice());
 		int i=pstmt.executeUpdate();
 		if(i!=0){
 			logger.info("entered to cart succefully");

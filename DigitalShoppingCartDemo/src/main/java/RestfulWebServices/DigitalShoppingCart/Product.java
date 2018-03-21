@@ -9,7 +9,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Product {
 	String CustomerId="";
-	String OrderId="";
+	//String OrderId="";
 	String Name="";
 	double NoOfunits;
 	String Units="";
@@ -20,13 +20,6 @@ public class Product {
 	}
 	public void setCustomerId(String customerId) {
 		CustomerId = customerId;
-	}
-	@XmlElement(name="OrderId")
-	public String getOrderId() {
-		return OrderId;
-	}
-	public void setOrderId(String orderId) {
-		OrderId = orderId;
 	}
 	@XmlElement(name="Name")
 	public String getName() {
