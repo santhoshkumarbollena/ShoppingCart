@@ -34,3 +34,13 @@
 2018-03-21 23:02:42 INFO  CheakingAvalabilityOfProduct:25 - true
 2018-03-21 23:02:42 INFO  CheakingAvalabilityOfProduct:25 - true
 2018-03-21 23:02:42 INFO  CheakingAvalabilityOfProduct:25 - true
+2018-03-24 13:37:13 INFO  GettingPriceInCategery:17 - select price from fruits
+2018-03-24 13:37:14 INFO  GettingPriceInCategery:21 - 14
+2018-03-24 13:37:14 INFO  GettingPriceInCategery:21 - 10
+2018-03-24 13:37:14 INFO  GettingPriceInCategery:21 - 5
+2018-03-24 13:37:14 INFO  GettingPriceInCategery:21 - 7
+2018-03-24 13:37:14 INFO  GettingPriceInCategery:21 - 7
+2018-03-24 13:37:14 INFO  GettingPriceInCategery:21 - 4
+2018-03-24 13:37:14 INFO  GettingPriceInCategery:21 - 15
+2018-03-24 13:37:14 INFO  GettingPriceInCategery:21 - 30
+2018-03-24 13:37:14 INFO  GettingPriceInCategery:21 - 1

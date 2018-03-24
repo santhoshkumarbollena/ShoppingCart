@@ -46,13 +46,15 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 		});
 	}
 	$scope.GettingPrice=function(){
+		var product="fruits";
 		$http({
 			method :'GET',
-			url : 'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/GetCatigeryPrice/'+
+			url : 'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/GetCategoryPrice/'+product
 			
 		}).then(function (response)
 				{
 			$scope.Price=response.data;
+			//$window.alert($scope.Price);
 				});
 	}
 
@@ -64,43 +66,54 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 			<header ng-include="'Header.html'"></header>
 			
 		</div>
+		<div ng-init="GettingPrice()"></div>
 		<div class="content" ng-init="cheakavalability()">
-			
-			<div class="gallery" ng-if="avalabilityOf[0]=='true'">
-				<a href="project images/fruits/apple.jpg"><img alt="apple" src="project images/fruits/apple.jpg"></a>
-				<div class="desc"><p>Apple</p></div>
-			</div>
-			<div class="gallery" ng-if="avalabilityOf[1]=='true'">
-				<a href="project images/fruits/banana.jpg"><img alt="banana" src="project images/fruits/banana.jpg"></a>
-				<div class="desc"><p>Banana</p></div>
-			</div>
 			<div class="gallery" ng-if="avalabilityOf[2]=='true'">
 				<a href="Cherry.html"><img alt="cherry" src="project images/fruits/cherry.jpg"></a>
-				<div class="desc"><p>Cherry</p></div>
+				<div class="desc"><p>Cherry</p>
+				Price:{{Price[0]}}</div>
+			</div>
+			
+			<div class="gallery" ng-if="avalabilityOf[1]=='true'">
+				<a href="project images/fruits/banana.jpg"><img alt="banana" src="project images/fruits/banana.jpg"></a>
+				<div class="desc"><p>Banana</p>
+				Price:{{Price[1]}}</div>
+			</div>
+			<div class="gallery" ng-if="avalabilityOf[0]=='true'">
+				<a href="project images/fruits/apple.jpg"><img alt="apple" src="project images/fruits/apple.jpg"></a>
+				<div class="desc"><p>Apple</p>
+				Price:{{Price[2]}}
+				</div>
 			</div>
 			<div class="gallery" ng-if="avalabilityOf[3]=='true'">
 				<a href="project images/fruits/custurdapple.jpg"><img alt="custurdapple" src="project images/fruits/custurdapple.jpg"></a>
-				<div class="desc"><p>Custurd apple</p></div>
+				<div class="desc"><p>Custurd apple</p>
+				Price:{{Price[3]}}</div>
 			</div>
 			<div class="gallery" ng-if="avalabilityOf[4]=='true'">
 				<a href="project images/fruits/greenapple.jpg"><img alt="green apple" src="project images/fruits/greenapple.jpg"></a>
-				<div class="desc"><p>Green apple</p></div>
+				<div class="desc"><p>Green apple</p>
+				Price:{{Price[4]}}</div>
 			</div>
 			<div class="gallery" ng-if="avalabilityOf[5]=='true'">
 				<a href="project images/fruits/orange.jpg"><img alt="orange" src="project images/fruits/orange.jpg"></a>
-				<div class="desc"><p>Orange</p></div>
+				<div class="desc"><p>Orange</p>
+				Price:{{Price[5]}}</div>
 			</div>
 			<div class="gallery" ng-if="avalabilityOf[6]=='true'">
 				<a href="project images/fruits/guava.jpg"><img alt="guava" src="project images/fruits/guava.jpg"></a>
-				<div class="desc"><p>Guava</p></div>
+				<div class="desc"><p>Guava</p>
+				Price:{{Price[6]}}</div>
 			</div>
 			<div class="gallery" ng-if="avalabilityOf[7]=='true'">
 				<a href="project images/fruits/popaya.jpg"><img alt="popaya" src="project images/fruits/popaya.jpg"></a>
-				<div class="desc"><p>Popaya</p></div>
+				<div class="desc"><p>Popaya</p>
+				Price:{{Price[7]}}</div>
 			</div>
 			<div class="gallery" ng-if="avalabilityOf[8]=='true'">
 				<a href="project images/fruits/stawberrys.jpg"><img alt="stawberrys" src="project images/fruits/stawberrys.jpg"></a>
-				<div class="desc"><p>Strawberyys</p></div>
+				<div class="desc"><p>Strawberyys</p>
+				Price:{{Price[8]}}</div>
 			</div>
 			
 		</div>

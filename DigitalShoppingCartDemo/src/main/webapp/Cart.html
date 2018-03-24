@@ -28,6 +28,19 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 	        "Price":1
 	};
 	//$scope.ProductName="";
+	$scope.PlaceOrder=function(){
+		$scope.user=$cookies.get("Customer");
+		$http({
+			method :'POST',
+			url : 'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/AddingToOrders/'+$scope.user
+			//data : angular.toJson($scope.Product),
+			//headers:{'Content-Type':'application/json'}
+		}).then(function (response)
+				{
+					$window.location.href='Orders.html';
+				});
+		
+	}
 	$scope.RemovingProduct=function(ProductName)
 	{
 		var Cust=$cookies.get("Customer");
@@ -98,7 +111,7 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 				<th  colspan="6">Total Cost:{{Total}}</th>
 			</tr>
 			<tr>
-				<th colspan="6"><input type="button" value="Place Order" class="CartButton"></th>
+				<th colspan="6"><input type="button" value="Place Order" ng-click="PlaceOrder()" class="CartButton"></th>
 			</tr>
 		</table>
 		

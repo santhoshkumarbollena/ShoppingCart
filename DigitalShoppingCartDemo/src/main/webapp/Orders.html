@@ -22,6 +22,17 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 	$scope.user=$cookies.get("Customer");
 	//$scope.log=false;
 	//$window.alert($scope.log);
+	$scope.user=$cookies.get("Customer");
+	$scope.getOrderDetails=function(){
+		$http({
+			method :'GET',
+			url : 'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/getOrders/'+$scope.user,
+			
+		}).then(function (response)
+				{
+			$scope.Orders=response.data;
+				});
+	}
 });
 </script>
 
@@ -31,10 +42,7 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 			<header ng-include="'Header.html'"></header>
 			
 		</div>
-		<div class="content">
-			
-		<h1>No orders yet</h1>
-			
+		<div class="content" ng-init="getOrderDetails()">
 		</div>
 		
 		

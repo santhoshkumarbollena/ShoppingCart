@@ -128,13 +128,13 @@ public class ResourceForAll {
 		return c1.cheakfruits();
 	}
 	@GET
-	@Path("/GetFruitsPrice")
+	@Path("/GetCategoryPrice/{Product}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Integer> fruitsPrice()
+	public List<Integer> fruitsPrice(@PathParam("Product") String Product)
 	{
 		GettingPriceInCategery g1=new GettingPriceInCategery();
-		
-		return null;
+		return g1.getPriceInCategory(Product);
+		//return List<Integer>;
 	}
 	/*@GET
 	@Path("/LoggingIn")
@@ -167,6 +167,15 @@ public class ResourceForAll {
 		logger.info(l1.getPassword());
 		LoggingMapper lm=new LoggingMapper();
 		return lm.verify(l1);
+
+	}
+	@POST
+	@Path("/AddingToOrders/{UserName}")
+	// @Consumes(MediaType.APPLICATION_JSON)
+	@Produces({ MediaType.APPLICATION_JSON })
+	public void OrderDetails( @PathParam("UserName") String UserName) {
+		Ordering or=new Ordering();
+		or.addOrder(UserName);
 
 	}
 	@GET
