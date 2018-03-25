@@ -73,6 +73,16 @@ public class ResourceForAll {
 		return gt.getPrice(prod);
 		
 	}
+	@GET
+	@Path("/getOrders/{UserName}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<OrderDetails> getOrders(@PathParam("UserName") String UserName)
+	{
+		OrderDetailsMapper om=new OrderDetailsMapper();
+		List<OrderDetails> lior=new ArrayList<OrderDetails>();
+		return om.getOrdersOf(UserName);
+		//return null;
+	}
 	
 	@GET
 	@Path("/GetCustomerDetails/{UserName}")

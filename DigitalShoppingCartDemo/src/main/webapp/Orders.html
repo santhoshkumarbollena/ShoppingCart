@@ -23,6 +23,14 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 	//$scope.log=false;
 	//$window.alert($scope.log);
 	$scope.user=$cookies.get("Customer");
+	$scope.Orders={
+			"total":1,
+			"time":"",
+			"price":[],
+			"nofitems":[],
+			"orderId":"",
+			"ordereditems":[]
+	};
 	$scope.getOrderDetails=function(){
 		$http({
 			method :'GET',
@@ -31,6 +39,9 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 		}).then(function (response)
 				{
 			$scope.Orders=response.data;
+			//$window.alert($scope.Orders[0].total);
+			$scope.len1=$scope.Orders.length;
+			//$window.alert($scope.len1);
 				});
 	}
 });
@@ -43,6 +54,27 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 			
 		</div>
 		<div class="content" ng-init="getOrderDetails()">
+		<div >
+			<table border="1">
+				<tr>
+					<th>OrderId</th>
+					<th>OrderTime</th>
+					<th>Ordered Items</th>
+					<th>Number Of Items</th>
+					<th>Price</th>
+					<th>Total</th>
+				</tr>
+				<tr ng-repeat="order in Orders">
+					<th>{{order.orderId}}</th>
+					<th>{{order.time}}</th>
+					<th>{{order.ordereditems}}</th>
+					<th>{{order.nofitems}}</th>
+					<th>{{order.price}}</th>
+					<th colspan="5">total:{{order.total}}</th>
+				</tr>
+			</table>
+		</div>
+			
 		</div>
 		
 		
