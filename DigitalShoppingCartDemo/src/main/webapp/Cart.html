@@ -28,6 +28,7 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 	        "Price":1
 	};
 	//$scope.ProductName="";
+	var orderplaced=false;
 	$scope.PlaceOrder=function(){
 		$scope.user=$cookies.get("Customer");
 		$http({
@@ -37,8 +38,20 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 			//headers:{'Content-Type':'application/json'}
 		}).then(function (response)
 				{
+			orderplaced=true;
+			//$window.alert(orderplaced);
+			
+			$http({
+				method:'DELETE',
+				url:'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/DeletingFromCartAfterOrdered/'+$scope.user
+			}).then(function(response){
+				$window.location.href='Orders.html';
+			});
+			
 					$window.location.href='Orders.html';
 				});
+		//$window.alert(orderplaced);
+		
 		//http delete to remove products from cart after ordering
 		
 	}
@@ -72,7 +85,7 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 			$scope.Total=0;
 			for(var i=0;i<=$scope.len;i++)
 				{
-					//$window.alert($scope.Cart[i].Price);
+					
 					$scope.Total=$scope.Total+($scope.Cart[i].Price-0.0)*$scope.Cart[i].NoOfunits;
 					//$window.alert($scope.Total);
 					//$window.alert(($scope.Cart[i].Price-0.0)*$scope.Cart[i].NoOfunits);

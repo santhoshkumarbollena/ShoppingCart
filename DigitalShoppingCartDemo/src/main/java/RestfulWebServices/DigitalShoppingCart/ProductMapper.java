@@ -4,8 +4,11 @@ import org.apache.log4j.Logger;
 
 
 
+
+
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProductMapper {
 	Product pr=new Product();
@@ -73,6 +76,100 @@ public class ProductMapper {
 			logger.info("Exception in product mapper in deleteProduct"+ex);
 		}
 		return f;
+	}
+	public boolean deleteProductFromCartAfterOrdering(String userName) {
+		boolean f=false;
+		try{
+			String query="delete from Cart where CustomerID='"+userName+"'";
+			PreparedStatement pstmt=con.getConnection().prepareStatement(query);
+			f=pstmt.execute();
+			logger.info(f);
+		}catch(Exception ex){
+			logger.info("Exception in product mapper in deleteProduct"+ex);
+		}
+		return f;
+		
+	}
+	public List<Items> geAllProducts() {
+		List<Items> items=new ArrayList<Items>();
+		try{
+			String fruits="select * from fruits";
+			String cakes="select * from cakes";
+			String vegitables="select * from vegitables";
+			String dryfruits="select * from dryfruits";
+			String softdrinks="select * from softdrinks";
+			String icecreams="select * from icecreams";
+			PreparedStatement pstmt1=con.getConnection().prepareStatement(fruits);
+			ResultSet rs=pstmt1.executeQuery();
+			while(rs.next()){
+				Items it=new Items();
+				it.setItemName(rs.getString(1));
+				it.setUnits(rs.getString(2));
+				it.setPrice(rs.getInt(3));
+				it.setAvalability(rs.getString(4));
+				it.setCategory("fruits");
+				items.add(it);
+			}
+			PreparedStatement pstmt2=con.getConnection().prepareStatement(cakes);
+			ResultSet rs2=pstmt2.executeQuery();
+			while(rs2.next()){
+				Items it=new Items();
+				it.setItemName(rs2.getString(1));
+				it.setUnits(rs2.getString(2));
+				it.setPrice(rs2.getInt(3));
+				it.setAvalability(rs2.getString(4));
+				it.setCategory("cakes");
+				//logger.info(it.getAvalability());
+				items.add(it);
+			}
+			PreparedStatement pstmt3=con.getConnection().prepareStatement(vegitables);
+			ResultSet rs3=pstmt3.executeQuery();
+			while(rs3.next()){
+				Items it=new Items();
+				it.setItemName(rs3.getString(1));
+				it.setUnits(rs3.getString(2));
+				it.setPrice(rs3.getInt(3));
+				it.setAvalability(rs3.getString(4));
+				it.setCategory("vegitables");
+				items.add(it);
+			}
+			PreparedStatement pstmt4=con.getConnection().prepareStatement(dryfruits);
+			ResultSet rs4=pstmt4.executeQuery();
+			while(rs4.next()){
+				Items it=new Items();
+				it.setItemName(rs4.getString(1));
+				it.setUnits(rs4.getString(2));
+				it.setPrice(rs4.getInt(3));
+				it.setAvalability(rs4.getString(4));
+				it.setCategory("dryfruits");
+				items.add(it);
+			}
+			PreparedStatement pstmt5=con.getConnection().prepareStatement(softdrinks);
+			ResultSet rs5=pstmt5.executeQuery();
+			while(rs5.next()){
+				Items it=new Items();
+				it.setItemName(rs5.getString(1));
+				it.setUnits(rs5.getString(2));
+				it.setPrice(rs5.getInt(3));
+				it.setAvalability(rs5.getString(4));
+				it.setCategory("softdrinks");
+				items.add(it);
+			}
+			PreparedStatement pstmt6=con.getConnection().prepareStatement(icecreams);
+			ResultSet rs6=pstmt6.executeQuery();
+			while(rs6.next()){
+				Items it=new Items();
+				it.setItemName(rs6.getString(1));
+				it.setUnits(rs6.getString(2));
+				it.setPrice(rs6.getInt(3));
+				it.setAvalability(rs6.getString(4));
+				it.setCategory("icecreams");
+				items.add(it);
+			}
+		}catch(Exception ex){
+			logger.error("exception in ProductMapper in get All products "+ex);
+		}
+		return items;
 	}
 	
 	

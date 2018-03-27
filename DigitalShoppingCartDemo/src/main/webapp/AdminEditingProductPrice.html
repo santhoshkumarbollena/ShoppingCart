@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html ng-app="myModule" ng-controller="myController">
+<head>
+<meta charset="ISO-8859-1">
+<title>Logged In</title>
+<link rel="stylesheet" type="text/css" href="SubPagesStyle.css">
+
+<script src="angular.js"></script>
+<script src="Header.js"></script>
+<script src="angular-cookies.js"></script>
+<script type="text/javascript">
+var app=angular.module("myModule",['ngCookies']);
+app.controller("myController",function ($scope,$cookies,$window,$http)
+		{
+	
+	$scope.user=$cookies.get("Customer");
+			$scope.logging=$cookies.get("LoggedIn");
+			if($scope.logging=="false"){
+				$window.location.href="LoginPage.html";
+			}
+			$scope.Customer=$cookies.get("Customer");
+			$scope.logout=function()
+			{
+				$cookies.put("Customer","");
+				$cookies.put("LoggedIn",false);
+				$window.location.href="LoginPage.html";
+			}
+
+			
+			$scope.log=$cookies.get("LoggedIn");
+			if($scope.log=="true"){
+				$scope.logo=true;
+			}
+			else{
+				$scope.logo=false;
+			}
+	    	$scope.Products={
+	    			"price":0,
+	    			"itemName":"",
+	    			"units":"",
+	    			"avalability":"",
+	    			"category":""
+	    	};
+			$scope.getDetailsOfProducts=function()
+			{
+				$http({
+					method :'GET',
+					url : 'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/getAllProducts/',
+					
+				}).then(function (response)
+						{
+							$scope.Products=response.data;
+						});
+			}
+			
+		});
+</script>
+</head>
+<body>
+	<div class="Wrapper">
+		<header ng-include="'Header.html'"></header>
+
+	</div  ng-app="MyModule" ng-controller="MyController">
+<center><h1>Welcome  {{user}}</h1></center><div  align="right"><input type="button" value="log out" class="HomeButtons" ng-click="logout()">
+</div>
+	<div class="content">
+	<div ng-init="getDetailsOfProducts()">
+	<div >
+		<table border="1" align="center">
+		<tr>
+		<th>Category</th>
+			<th>Name</th>
+			<th>Units</th>
+			<th>Price</th>
+			<th>Avalability</th>
+		</tr>
+		<tr ng-repeat="Product in Products">
+		<th>{{Product.category}}</th>
+		<th>{{Product.itemName}}</th>
+		<th>{{Product.units}}</th>
+		<th>{{Product.price}}</th>
+		<th>{{Product.avalability}}</th>
+		</tr>
+		</table>
+	</div>
+	</div>
+
+</div>
+</div>
+<div>
+	<footer ng-include="'Footer.html'"></footer>
+	</div>
+
+
+
+</body>
+</html>

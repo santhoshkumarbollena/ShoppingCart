@@ -58,7 +58,7 @@
     			$scope.LoggedInOrNot=response.data;
     			//$window.alert($scope.LoggedInOrNot);
     			if($scope.LoggedInOrNot==true&&$scope.Details.UserName=="admin"){
-
+					
     				var name=$scope.Details.UserName;
 					$cookies.put("Customer",name);
 					$cookies.put("LoggedIn",true);

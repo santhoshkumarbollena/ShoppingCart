@@ -119,6 +119,17 @@ public class ResourceForAll {
 		ProductMapper pm=new ProductMapper();
 		return pm.deleteProductFromCart(UserName,ProductName);
 	}
+	@DELETE
+	@Path("/DeletingFromCartAfterOrdered/{UserName}")
+	@Produces(MediaType.APPLICATION_JSON)
+	
+	public boolean deletingItemFromCartafterordering(@PathParam("UserName") String UserName)
+	{
+		//logger.info(ProductName);
+		logger.info(UserName+"delete for pro is callsed");
+		ProductMapper pm=new ProductMapper();
+		return pm.deleteProductFromCartAfterOrdering(UserName);
+	}
 	@PUT
 	@Path("/UpdateCustomerDetails/{UserName}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -136,6 +147,14 @@ public class ResourceForAll {
 	{
 		CheakingAvalabilityOfProduct c1=new CheakingAvalabilityOfProduct();
 		return c1.cheakfruits();
+	}
+	@GET
+	@Path("/getAllProducts")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Items> getAllproducts()
+	{
+		ProductMapper prm=new ProductMapper();
+		return prm.geAllProducts();
 	}
 	@GET
 	@Path("/GetCategoryPrice/{Product}")

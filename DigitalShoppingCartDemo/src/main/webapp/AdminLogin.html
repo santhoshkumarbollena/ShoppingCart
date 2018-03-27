@@ -48,12 +48,15 @@ app.controller("myController",function ($scope,$cookies,$window,$http)
 					
 				}).then(function(reponse){
 					//$window.alert("Changes saved");
-					$window.location.href="LoggedIn.html";
+					$window.location.href="AdminLogin.html";
 				});
 			}
 			$scope.cancel=function()
 			{
-				$window.location.href="LoggedIn.html";
+				$window.location.href="AdminLogin.html";
+			}
+			$scope.editPrice=function(){
+				$window.location.href="AdminEditingProductPrice.html";
 			}
 			$scope.getDetails=function(){
 				$scope.Customer={
@@ -98,7 +101,7 @@ app.controller("myController",function ($scope,$cookies,$window,$http)
 	<div class="content">
 	<div ng-init="getDetails()">
 	</div>
-
+<input type="button" value="Edit Price " class="HomeButtons" ng-click="editPrice()">
 <table align="center" >
 	
 	<tr>
