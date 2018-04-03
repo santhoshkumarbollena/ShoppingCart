@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html ng-app="myModule" ng-controller="myController">
+<head>
+<meta charset="ISO-8859-1">
+<title>Logged In</title>
+<link rel="stylesheet" type="text/css" href="SubPagesStyle.css">
+
+<script src="angular.js"></script>
+<script src="Header.js"></script>
+<script src="angular-cookies.js"></script>
+<script type="text/javascript">
+var app=angular.module("myModule",['ngCookies']);
+app.controller("myController",function ($scope,$cookies,$window,$http)
+		{
+	
+	$scope.user=$cookies.get("Customer");
+			$scope.logging=$cookies.get("LoggedIn");
+			if($scope.logging=="false"){
+				$window.location.href="LoginPage.html";
+			}
+			$scope.Customer=$cookies.get("Customer");
+			$scope.logout=function()
+			{
+				$cookies.put("Customer","");
+				$cookies.put("LoggedIn",false);
+				$window.location.href="LoginPage.html";
+			}
+
+			
+			$scope.log=$cookies.get("LoggedIn");
+			if($scope.log=="true"){
+				$scope.logo=true;
+			}
+			else{
+				$scope.logo=false;
+			}
+	    
+			$scope.getTransactionDetails=function()
+			{
+				$http({
+					method :'GET',
+					url : 'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/getTransactionDetails',
+					
+				}).then(function (response)
+						{
+							$scope.TransactionDetails=response.data;
+							//$window.alert($scope.TransactionDetails);
+						});
+			}
+			
+		});
+</script>
+</head>
+<body>
+	<div class="Wrapper">
+		<header ng-include="'Header.html'"></header>
+
+	</div  ng-app="MyModule" ng-controller="MyController">
+<center><h1>Welcome  {{user}}</h1></center><div  align="right"><input type="button" value="log out" class="HomeButtons" ng-click="logout()">
+</div>
+	<div class="content">
+	<div ng-init="getTransactionDetails()">
+	<div >
+		<table border="1" align="center">
+			<tr>
+				<td><b>OrderId</b></td>
+				<td><b>Customer Id</b></td>
+				<td><b>Total Price For Order</b></td>
+				<td><b>Purchased Time</b></td>
+			</tr>
+			<tr ng-repeat="t in TransactionDetails">
+				<td>{{t.orderId}}</td>
+				<td>{{t.customerId}}</td>
+				<td>{{t.totalPurchasedPrice}}</td>
+				<td>{{t.timeOfPurchase}}</td>
+			</tr>
+		</table>
+	</div>
+	</div>
+
+</div>
+</div>
+<div>
+	<footer ng-include="'Footer.html'"></footer>
+	</div>
+
+
+
+</body>
+</html>

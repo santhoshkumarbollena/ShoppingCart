@@ -2,7 +2,7 @@
 <html ng-app="myModule" ng-controller="myController">
 <head>
 <meta charset="ISO-8859-1">
-<title>Soft Drinks</title>
+<title>SOft Drinks</title>
 <link rel="stylesheet" type="text/css" href="SubPagesStyle.css">
 <script src="angular.js"></script>
 <script src="Header.js"></script>
@@ -22,6 +22,40 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 	$scope.user=$cookies.get("Customer");
 	//$scope.log=false;
 	//$window.alert($scope.log);
+	$scope.avalabilityOf={
+			thumpsup:'',
+			maaza:'',
+			appy:'',
+			minutemaid:'',
+			pepsi:''
+			
+	};
+	
+	$scope.cheakavalability=function()
+	{
+		var product="softdrinks";
+		$http({
+			method:'GET',
+			url:'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/cheakavalability/'+product
+		}).then(function(response){
+			$scope.avalabilityOf=response.data;
+			$scope.len=$scope.avalabilityOf.length;
+			//$window.alert($scope.avalabilityOf);
+		});
+	}
+	$scope.GettingPrice=function(){
+		var product="softdrinks";
+		$http({
+			method :'GET',
+			url : 'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/GetCategoryPrice/'+product
+			
+		}).then(function (response)
+				{
+			$scope.Price=response.data;
+			//$window.alert($scope.Price);
+				});
+	}
+
 });
 </script>
 </head>
@@ -30,29 +64,36 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 			<header ng-include="'Header.html'"></header>
 			
 		</div>
-		<div class="content">
-			
-			<div class="gallery">
-				<a href="project images/soft drinks/appy_fizz.jpg"><img alt="appy" src="project images/soft drinks/appy_fizz.jpg"></a>
-				<div class="desc"><p>Appy</p></div>
-			</div>
-			<div class="gallery">
-				<a href="project images/soft drinks/maaza.jpg"><img alt="maaza" src="project images/soft drinks/maaza.jpg"></a>
-				<div class="desc"><p>Maaza</p></div>
-			</div>
-			<div class="gallery">
-				<a href="project images/soft drinks/minutemade.jpg"><img alt="minutemade" src="project images/soft drinks/minutemade.jpg"></a>
-				<div class="desc"><p>Minute Maid</p></div>
-			</div>
-			<div class="gallery">
-				<a href="project images/soft drinks/pepsi1.jpg"><img alt="pepsi" src="project images/soft drinks/pepsi1.jpg"></a>
-				<div class="desc"><p>Pepsi</p></div>
-			</div>
-			<div class="gallery">
-				<a href="project images/soft drinks/thumpsup.jpeg"><img alt="thumps up" src="project images/soft drinks/thumpsup.jpeg"></a>
-				<div class="desc"><p>Thumps up</p></div>
+		<div ng-init="GettingPrice()"></div>
+		<div class="content" ng-init="cheakavalability()">
+			<div class="gallery" ng-if="avalabilityOf[0]=='true'">
+				<a href="Thumpsup.html"><img alt="Thumps up" src="project images/soft drinks/thumpsup.jpeg"></a>
+				<div class="desc"><p>Thumps up</p>
+				Price:{{Price[0]}}</div>
 			</div>
 			
+			<div class="gallery" ng-if="avalabilityOf[1]=='true'">
+				<a href="maaza.html"><img alt="maaza" src="project images/soft drinks/maaza.jpg"></a>
+				<div class="desc"><p>maaza</p>
+				Price:{{Price[1]}}</div>
+			</div>
+			<div class="gallery" ng-if="avalabilityOf[2]=='true'">
+				<a href="appy.html"><img alt="appy" src="project images/soft drinks/appy_fizz.jpg"></a>
+				<div class="desc"><p>appy</p>
+				Price:{{Price[2]}}
+				</div>
+			</div>
+			<div class="gallery" ng-if="avalabilityOf[3]=='true'">
+				<a href="MinuteMaid.html"><img alt="minute maid" src="project images/soft drinks/minutemade.jpg"></a>
+				<div class="desc"><p>minute maid</p>
+				Price:{{Price[3]}}</div>
+			</div>
+			<div class="gallery" ng-if="avalabilityOf[4]=='true'">
+				<a href="pepsi.html"><img alt="pepsi" src="project images/soft drinks/pepsi1.jpg"></a>
+				<div class="desc"><p>pepsi</p>
+				Price:{{Price[4]}}
+				</div>
+			</div>
 		</div>
 		
 		

@@ -58,6 +58,9 @@ app.controller("myController",function ($scope,$cookies,$window,$http)
 			$scope.editPrice=function(){
 				$window.location.href="AdminEditingProductPrice.html";
 			}
+			$scope.transactions=function(){
+				$window.location.href="AdminTransactionDetails.html";
+			}
 			$scope.getDetails=function(){
 				$scope.Customer={
 						UserName:'',
@@ -101,7 +104,8 @@ app.controller("myController",function ($scope,$cookies,$window,$http)
 	<div class="content">
 	<div ng-init="getDetails()">
 	</div>
-<input type="button" value="Edit Price " class="HomeButtons" ng-click="editPrice()">
+<input type="button" value="Edit Price And Avalability" class="HomeButtons" ng-click="editPrice()">
+<input type="button" value="Transaction Details" class="HomeButtons" ng-click="transactions()">
 <table align="center" >
 	
 	<tr>

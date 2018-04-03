@@ -74,6 +74,17 @@ public class ResourceForAll {
 		
 	}
 	@GET
+	@Path("/GetPriceOfProduct/{Category}/{Product}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public int GetPriceOfProduct(@PathParam("Category") String Category,@PathParam("Product") String prod)
+	{
+		logger.info(Category);
+		logger.info(prod);
+		GetPrice gt=new GetPrice();
+		return gt.getPriceofproduct(Category,prod);
+		
+	}
+	@GET
 	@Path("/getOrders/{UserName}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<OrderDetails> getOrders(@PathParam("UserName") String UserName)
@@ -140,6 +151,18 @@ public class ResourceForAll {
 		return rdb.updateDetailsOfCustomer(r1,UserName);
 		
 	}
+	@PUT
+	@Path("/UpdateProductDetails/{category}/{itemName}/{price}/{avalability}")
+	@Produces(MediaType.APPLICATION_JSON)
+	
+	public boolean updateProductDetails(@PathParam("category") String category,@PathParam("itemName") String itemName,@PathParam("price") String price,@PathParam("avalability") String avalability)
+	{
+		logger.info("demo");
+		logger.info(price);
+		ProductMapper pm=new ProductMapper();
+		pm.updateProductPriceAndAvalability(category,itemName,price,avalability);
+		return true;
+	}
 	@GET
 	@Path("/fruitscheakavalability")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -148,6 +171,16 @@ public class ResourceForAll {
 		CheakingAvalabilityOfProduct c1=new CheakingAvalabilityOfProduct();
 		return c1.cheakfruits();
 	}
+	
+	@GET
+	@Path("/cheakavalability/{Product}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<String> cheakavalability(@PathParam("Product") String ProductName)
+	{
+		CheakingAvalabilityOfProduct c1=new CheakingAvalabilityOfProduct();
+		return c1.cheakAva(ProductName);
+	}
+	
 	@GET
 	@Path("/getAllProducts")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -156,6 +189,17 @@ public class ResourceForAll {
 		ProductMapper prm=new ProductMapper();
 		return prm.geAllProducts();
 	}
+	
+	@GET
+	@Path("/getTransactionDetails")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Transactions> getTransactionDetails()
+	{
+		TransactionDetails td=new TransactionDetails();
+		return td.getTransactions();
+		
+	}
+	
 	@GET
 	@Path("/GetCategoryPrice/{Product}")
 	@Produces(MediaType.APPLICATION_JSON)

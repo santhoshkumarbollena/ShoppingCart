@@ -18,6 +18,9 @@ app.controller("myController",function ($scope,$cookies,$window,$http)
 			if($scope.logging=="false"){
 				$window.location.href="LoginPage.html";
 			}
+			if($cookies.get("Customer")=="admin"){
+				$window.location.href="AdminLogin.html";
+			}
 			$scope.Customer=$cookies.get("Customer");
 			$scope.logout=function()
 			{
@@ -25,7 +28,7 @@ app.controller("myController",function ($scope,$cookies,$window,$http)
 				$cookies.put("LoggedIn",false);
 				$window.location.href="LoginPage.html";
 			}
-
+	
 			
 			$scope.log=$cookies.get("LoggedIn");
 			if($scope.log=="true"){

@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="SubPagesStyle.css">
 <script src="angular.js"></script>
 <script src="Header.js"></script>
-     <script src="angular-cookies.js"></script>
+    <script src="angular-cookies.js"></script>
 
 <script type="text/javascript">
 var app=angular.module("myModule",['ngCookies']);
@@ -22,34 +22,71 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 	$scope.user=$cookies.get("Customer");
 	//$scope.log=false;
 	//$window.alert($scope.log);
+	$scope.avalabilityOf={
+			almonds:'',
+			cashew:'',
+			peanut:'',
+			raisins:''
+			
+	};
+	
+	$scope.cheakavalability=function()
+	{
+		var product="dryfruits";
+		$http({
+			method:'GET',
+			url:'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/cheakavalability/'+product
+		}).then(function(response){
+			$scope.avalabilityOf=response.data;
+			$scope.len=$scope.avalabilityOf.length;
+			//$window.alert($scope.avalabilityOf);
+		});
+	}
+	$scope.GettingPrice=function(){
+		var product="dryfruits";
+		$http({
+			method :'GET',
+			url : 'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/GetCategoryPrice/'+product
+			
+		}).then(function (response)
+				{
+			$scope.Price=response.data;
+			//$window.alert($scope.Price);
+				});
+	}
+
 });
 </script>
-
 </head>
 <body>
 	<div class="Wrapper">		
 			<header ng-include="'Header.html'"></header>
 			
 		</div>
-		<div class="content">
-			
-			<div class="gallery">
-				<a href="project images/dryfruits/almonds.jpg"><img alt="almonds" src="project images/dryfruits/almonds.jpg"></a>
-				<div class="desc"><p>Almonds</p></div>
-			</div>
-			<div class="gallery">
-				<a href="project images/dryfruits/cachew.jpg"><img alt="cashew" src="project images/dryfruits/cachew.jpg"></a>
-				<div class="desc"><p>Cashew</p></div>
-			</div>
-			<div class="gallery">
-				<a href="project images/dryfruits/peanut.jpg"><img alt="peanut" src="project images/dryfruits/peanut.jpg"></a>
-				<div class="desc"><p>Peanut</p></div>
-			</div>
-			<div class="gallery">
-				<a href="project images/dryfruits/raisins.jpg"><img alt="raisins" src="project images/dryfruits/raisins.jpg"></a>
-				<div class="desc"><p>Raisins</p></div>
+		<div ng-init="GettingPrice()"></div>
+		<div class="content" ng-init="cheakavalability()">
+			<div class="gallery" ng-if="avalabilityOf[0]=='true'">
+				<a href="Almonds.html"><img alt="almonds" src="project images/dryfruits/almonds.jpg"></a>
+				<div class="desc"><p>Almonds</p>
+				Price:{{Price[0]}}</div>
 			</div>
 			
+			<div class="gallery" ng-if="avalabilityOf[1]=='true'">
+				<a href="Cashew.html"><img alt="cashew" src="project images/dryfruits/cachew.jpg"></a>
+				<div class="desc"><p>cashew</p>
+				Price:{{Price[1]}}</div>
+			</div>
+			<div class="gallery" ng-if="avalabilityOf[2]=='true'">
+				<a href="Peanut.html"><img alt="apple" src="project images/dryfruits/peanut.jpg"></a>
+				<div class="desc"><p>peanut</p>
+				Price:{{Price[2]}}
+				</div>
+			</div>
+			<div class="gallery" ng-if="avalabilityOf[3]=='true'">
+				<a href="Raisins.html"><img alt="raisins" src="project images/dryfruits/raisins.jpg"></a>
+				<div class="desc"><p>raisins</p>
+				Price:{{Price[3]}}</div>
+			</div>
 		</div>
 		
 		

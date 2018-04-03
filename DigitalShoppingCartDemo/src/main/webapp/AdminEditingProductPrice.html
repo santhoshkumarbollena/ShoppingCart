@@ -3,7 +3,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Logged In</title>
-<link rel="stylesheet" type="text/css" href="SubPagesStyle.css">
+<link rel="stylesheet" type="text/css" href="HomePageStyle.css">
 
 <script src="angular.js"></script>
 <script src="Header.js"></script>
@@ -52,6 +52,35 @@ app.controller("myController",function ($scope,$cookies,$window,$http)
 							$scope.Products=response.data;
 						});
 			}
+			$scope.i=0;
+			$scope.Product={
+					category:'',
+					itemName:'',
+					price:'',
+					avalability:''
+			};
+			$scope.Update=function(category,itemName,price,avalability)
+			{
+				//$window.alert(category);
+				//$window.alert(itemName);
+				//$window.alert(price);
+				//$window.alert(avalability);
+				$scope.Product.category=category;
+				$scope.Product.itemName=itemName;
+				$scope.Product.price=price;
+				$scope.Product.avalability=avalability;
+				$http({
+					method:'PUT',
+					url:'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/UpdateProductDetails/'+category+'/'+itemName+'/'+price+'/'+avalability,
+					data:angular.toJson($scope.Product),
+					headers:{'Content-Type':'application/json'}
+					
+				}).then(function(reponse){
+					$window.alert("Changes saved");
+					$window.location.href="AdminEditingProductPrice.html";
+				});
+			}
+			
 			
 		});
 </script>
@@ -69,17 +98,18 @@ app.controller("myController",function ($scope,$cookies,$window,$http)
 		<table border="1" align="center">
 		<tr>
 		<th>Category</th>
-			<th>Name</th>
-			<th>Units</th>
-			<th>Price</th>
-			<th>Avalability</th>
+			<th><b>Name</b></th>
+			<th><b>Units</b></th>
+			<th><b>Price</b></th>
+			<th><b>Avalability</b></th>
 		</tr>
 		<tr ng-repeat="Product in Products">
 		<th>{{Product.category}}</th>
 		<th>{{Product.itemName}}</th>
 		<th>{{Product.units}}</th>
-		<th>{{Product.price}}</th>
-		<th>{{Product.avalability}}</th>
+		<th><input type="number" ng-model="Product.price"></th>
+		<th><input type="text" ng-model="Product.avalability"></th>
+		<th><input type="button" value="Update"  class="CartButton" ng-click="Update(Product.category,Product.itemName,Product.price,Product.avalability)"> </th>
 		</tr>
 		</table>
 	</div>

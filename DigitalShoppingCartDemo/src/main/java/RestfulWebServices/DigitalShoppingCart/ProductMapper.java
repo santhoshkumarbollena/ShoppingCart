@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 
 
 
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -170,6 +171,17 @@ public class ProductMapper {
 			logger.error("exception in ProductMapper in get All products "+ex);
 		}
 		return items;
+	}
+	public void updateProductPriceAndAvalability(String category,String itemName, String price, String avalability) {
+		try{
+			String query="update "+category+" set Price='"+price+"',Availability='"+avalability+"' where Name='"+itemName+"'";
+			logger.info(query);
+			PreparedStatement pstmt=con.getConnection().prepareStatement(query);
+			pstmt.executeUpdate();
+		}catch(Exception ex){
+			logger.error("exception in ProductMapper updatePanaA "+ex);
+		}
+		
 	}
 	
 	

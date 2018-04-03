@@ -22,6 +22,40 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 	$scope.user=$cookies.get("Customer");
 	//$scope.log=false;
 	//$window.alert($scope.log);
+	$scope.avalabilityOf={
+			butterscotch:'',
+			choclate:'',
+			mintchoclatechip:'',
+			strawberry:'',
+			vanila:''
+			
+	};
+	
+	$scope.cheakavalability=function()
+	{
+		var product="icecreams";
+		$http({
+			method:'GET',
+			url:'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/cheakavalability/'+product
+		}).then(function(response){
+			$scope.avalabilityOf=response.data;
+			$scope.len=$scope.avalabilityOf.length;
+			//$window.alert($scope.avalabilityOf);
+		});
+	}
+	$scope.GettingPrice=function(){
+		var product="icecreams";
+		$http({
+			method :'GET',
+			url : 'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/GetCategoryPrice/'+product
+			
+		}).then(function (response)
+				{
+			$scope.Price=response.data;
+			//$window.alert($scope.Price);
+				});
+	}
+
 });
 </script>
 </head>
@@ -30,27 +64,35 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 			<header ng-include="'Header.html'"></header>
 			
 		</div>
-		<div class="content">
+		<div ng-init="GettingPrice()"></div>
+		<div class="content" ng-init="cheakavalability()">
+			<div class="gallery" ng-if="avalabilityOf[0]=='true'">
+				<a href="butterscotch.html"><img alt="butterscotch" src="project images/ice creams/butterscotch.jpg"></a>
+				<div class="desc"><p>butterscotch</p>
+				Price:{{Price[0]}}</div>
+			</div>
 			
-			<div class="gallery">
-				<a href="project images/ice creams/butterscotch.jpg"><img alt="butterscotch" src="project images/ice creams/butterscotch.jpg"></a>
-				<div class="desc"><p>Butter Scotch</p></div>
+			<div class="gallery" ng-if="avalabilityOf[1]=='true'">
+				<a href="choclate.html"><img alt="choclate" src="project images/ice creams/choclate.jpg"></a>
+				<div class="desc"><p>choclate</p>
+				Price:{{Price[1]}}</div>
 			</div>
-			<div class="gallery">
-				<a href="project images/ice creams/choclate.jpg"><img alt="choclate" src="project images/ice creams/choclate.jpg"></a>
-				<div class="desc"><p>Choclate</p></div>
+			<div class="gallery" ng-if="avalabilityOf[2]=='true'">
+				<a href="mintchoclatechip.html"><img alt="mintchoclatechip" src="project images/ice creams/mintChoclateChip.jpg"></a>
+				<div class="desc"><p>mintchoclatechip</p>
+				Price:{{Price[2]}}
+				</div>
 			</div>
-			<div class="gallery">
-				<a href="project images/ice creams/mintChoclateChip.jpg"><img alt="mintchoclatechip" src="project images/ice creams/mintChoclateChip.jpg"></a>
-				<div class="desc"><p>Mint Choclate Chip</p></div>
+			<div class="gallery" ng-if="avalabilityOf[3]=='true'">
+				<a href="strawberryice.html"><img alt="strawberry" src="project images/ice creams/strawberry.jpg"></a>
+				<div class="desc"><p>strawberry</p>
+				Price:{{Price[3]}}</div>
 			</div>
-			<div class="gallery">
-				<a href="project images/ice creams/strawberry.jpg"><img alt="strawberry" src="project images/ice creams/strawberry.jpg"></a>
-				<div class="desc"><p>StrawBerry</p></div>
-			</div>
-			<div class="gallery">
-				<a href="project images/ice creams/vanilla.jpg"><img alt="vanilla" src="project images/ice creams/vanilla.jpg"></a>
-				<div class="desc"><p>Vanilla</p></div>
+			<div class="gallery" ng-if="avalabilityOf[4]=='true'">
+				<a href="vanila.html"><img alt="vanila" src="project images/ice creams/vanilla.jpg"></a>
+				<div class="desc"><p>vanila</p>
+				Price:{{Price[4]}}
+				</div>
 			</div>
 		</div>
 		

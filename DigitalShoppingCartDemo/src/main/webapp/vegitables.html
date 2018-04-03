@@ -22,6 +22,38 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 	$scope.user=$cookies.get("Customer");
 	//$scope.log=false;
 	//$window.alert($scope.log);
+	$scope.avalabilityOf={
+			carrot:'',
+			greenbeens:'',
+			tomato:''
+			
+	};
+	
+	$scope.cheakavalability=function()
+	{
+		var product="vegitables";
+		$http({
+			method:'GET',
+			url:'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/cheakavalability/'+product
+		}).then(function(response){
+			$scope.avalabilityOf=response.data;
+			$scope.len=$scope.avalabilityOf.length;
+			//$window.alert($scope.avalabilityOf);
+		});
+	}
+	$scope.GettingPrice=function(){
+		var product="vegitables";
+		$http({
+			method :'GET',
+			url : 'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/GetCategoryPrice/'+product
+			
+		}).then(function (response)
+				{
+			$scope.Price=response.data;
+			//$window.alert($scope.Price);
+				});
+	}
+
 });
 </script>
 </head>
@@ -30,22 +62,26 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 			<header ng-include="'Header.html'"></header>
 			
 		</div>
-		<div class="content">
+		<div ng-init="GettingPrice()"></div>
+		<div class="content" ng-init="cheakavalability()">
 			
-			<div class="gallery">
-				<a href="project images/vegitables/carrot.jpg"><img alt="carrot" src="project images/vegitables/carrot.jpg"></a>
-				<div class="desc"><p>Carrot</p></div>
+			<div class="gallery" ng-if="avalabilityOf[0]=='true'">
+				<a href="Tomato.html"><img alt="tomato" src="project images/vegitables/tomato.jpg"></a>
+				<div class="desc"><p>Tomato</p>
+				Price:{{Price[0]}}</div>
 			</div>
-			<div class="gallery">
-				<a href="project images/vegitables/GREEN_BEANS.jpg"><img alt="green beens" src="project images/vegitables/GREEN_BEANS.jpg"></a>
-				<div class="desc"><p>Green Beans</p></div>
+			<div class="gallery" ng-if="avalabilityOf[1]=='true'">
+				<a href="Carrot.html"><img alt="Carrot" src="project images/vegitables/carrot.jpg"></a>
+				<div class="desc"><p>Carrot</p>
+				Price:{{Price[1]}}</div>
 			</div>
-			<div class="gallery">
-				<a href="project images/vegitables/tomato.jpg"><img alt="tomato" src="project images/vegitables/tomato.jpg"></a>
-				<div class="desc"><p>Tomato</p></div>
+			<div class="gallery" ng-if="avalabilityOf[2]=='true'">
+				<a href="GreenBeans.html"><img alt="Green beans" src="project images/vegitables/GREEN_BEANS.jpg"></a>
+				<div class="desc"><p>Green Beans</p>
+				Price:{{Price[2]}}
+				</div>
 			</div>
-					
-		</div>
+			</div>
 		
 		
 		<footer ng-include="'Footer.html'"></footer>

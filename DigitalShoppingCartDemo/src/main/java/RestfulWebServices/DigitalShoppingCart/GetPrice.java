@@ -33,5 +33,29 @@ public class GetPrice {
 		
 		return price;
 	}
+	public int getPriceofproduct(String category, String prod) {
+		
+		int  price=0;
+		try{
+		DbmsConnection con=new DbmsConnection();
+		if(con==null)
+		{
+			logger.error("Connection object is null");
+		}
+		//DbmsQuerys query=new DbmsQuerys();
+		String query="select name,price from "+category;
+		PreparedStatement pstmt=con.getConnection().prepareStatement(query);
+		ResultSet rs=pstmt.executeQuery();
+		while(rs.next()){
+			if(rs.getString(1).equals(prod))
+		 price=rs.getInt(2);
+		logger.info(price);
+		}
+		}catch(Exception ex){
+			logger.error("Exception in GetPriceof product "+ex);
+		}
+		
+		return price;
+	}
 
 }

@@ -68,7 +68,7 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 		</div>
 		<div ng-init="GettingPrice()"></div>
 		<div class="content" ng-init="cheakavalability()">
-			<div class="gallery" ng-if="avalabilityOf[2]=='true'">
+			<div class="gallery" ng-if="avalabilityOf[0]=='true'">
 				<a href="Cherry.html"><img alt="cherry" src="project images/fruits/cherry.jpg"></a>
 				<div class="desc"><p>Cherry</p>
 				Price:{{Price[0]}}</div>
@@ -79,7 +79,7 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 				<div class="desc"><p>Banana</p>
 				Price:{{Price[1]}}</div>
 			</div>
-			<div class="gallery" ng-if="avalabilityOf[0]=='true'">
+			<div class="gallery" ng-if="avalabilityOf[2]=='true'">
 				<a href="Apple.html"><img alt="apple" src="project images/fruits/apple.jpg"></a>
 				<div class="desc"><p>Apple</p>
 				Price:{{Price[2]}}
