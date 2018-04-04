@@ -55,22 +55,38 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 		</div>
 		<div class="content" ng-init="getOrderDetails()">
 		<div >
-			<table border="1">
+			<table border="1" align="center">
 				<tr>
-					<th>OrderId</th>
-					<th>OrderTime</th>
+					<th>Order Id</th>
+					<th>Ordered Time</th>
 					<th>Ordered Items</th>
-					<th>Number Of Items</th>
+					<th>Ordered Number Of Items</th>
 					<th>Price</th>
 					<th>Total</th>
 				</tr>
 				<tr ng-repeat="order in Orders">
-					<th>{{order.orderId}}</th>
-					<th>{{order.time}}</th>
-					<th>{{order.ordereditems}}</th>
-					<th>{{order.nofitems}}</th>
-					<th>{{order.price}}</th>
-					<th colspan="5">total:{{order.total}}</th>
+					<td>{{order.orderId}}</td>
+					<td>{{order.time}}</td>
+					<td>
+					<table  >
+					<tr ng-repeat="li in order.ordereditems track by $index">
+					<td>{{li}}</td>
+					</tr>
+					</table>
+					</td>
+					<td>
+					<table  >
+					<tr ng-repeat="li in order.nofitems track by $index" >
+					<td>{{li}}</td>
+					</tr>
+					</table>
+					</td>
+					<td><table  >
+					<tr ng-repeat="li in order.price track by $index" >
+					<td>{{li}}</td>
+					</tr>
+					</table></td>
+					<td >Total:{{order.total}} Rs/-</td>
 				</tr>
 			</table>
 		</div>

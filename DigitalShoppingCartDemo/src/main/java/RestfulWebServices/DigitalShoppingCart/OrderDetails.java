@@ -8,7 +8,7 @@ public class OrderDetails {
 	String time="";
 	List<String> Ordereditems=new ArrayList<String>();
 	int total=0;
-	List<Integer> Nofitems=new ArrayList<Integer>();
+	List<Float> Nofitems=new ArrayList<Float>();
 	List<Integer> Price=new ArrayList<Integer>();
 	public String getOrderId() {
 		return OrderId;
@@ -34,10 +34,10 @@ public class OrderDetails {
 	public void setTotal(int total) {
 		this.total = total;
 	}
-	public List<Integer> getNofitems() {
+	public List<Float> getNofitems() {
 		return Nofitems;
 	}
-	public void setNofitems(List<Integer> nofitems) {
+	public void setNofitems(List<Float> nofitems) {
 		Nofitems = nofitems;
 	}
 	public List<Integer> getPrice() {

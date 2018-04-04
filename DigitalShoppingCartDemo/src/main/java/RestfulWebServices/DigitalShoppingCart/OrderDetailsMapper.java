@@ -27,11 +27,11 @@ public class OrderDetailsMapper {
 				PreparedStatement pstmt1=con.getConnection().prepareStatement(query1);
 				ResultSet rs1=pstmt1.executeQuery();
 				List<String> Orditems=new ArrayList<String>();
-				List<Integer> NofItems=new ArrayList<Integer>();
+				List<Float> NofItems=new ArrayList<Float>();
 				List<Integer> price=new ArrayList<Integer>();
 				while(rs1.next()){
 					Orditems.add(rs1.getString(2));
-					NofItems.add(rs1.getInt(4));
+					NofItems.add(rs1.getFloat(4));
 					price.add(rs1.getInt(5));
 				}
 				ord.setNofitems(NofItems);

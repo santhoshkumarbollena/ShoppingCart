@@ -27,15 +27,15 @@ public class Ordering {
 			//String time="2:00";
 			Date d1=new Date();
 			Timestamp t1=new Timestamp(d1.getTime());
-			int total=0;
+			double total=0;
 			while(rs.next()){
 				logger.info(rs.getString(1));
 				pstmt1.setString(1, Orderid);
 				pstmt1.setString(2, rs.getString(2));
 				pstmt1.setInt(3,rs.getInt(5));
-				pstmt1.setInt(4, rs.getInt(3));
-				pstmt1.setInt(5,rs.getInt(5)* rs.getInt(3));
-				total=total+rs.getInt(5)* rs.getInt(3);
+				pstmt1.setDouble(4, rs.getDouble(3));
+				pstmt1.setDouble(5,rs.getInt(5)* rs.getDouble(3));
+				total=total+rs.getDouble(5)* rs.getDouble(3);
 				int itemor=pstmt1.executeUpdate();
 				if(itemor==0){
 					logger.info("Not entered items to ordered items");
@@ -43,7 +43,7 @@ public class Ordering {
 			}
 			pstmt2.setString(1, Orderid);
 			pstmt2.setString(2,userName);
-			pstmt2.setInt(3, total);
+			pstmt2.setDouble(3, total);
 			pstmt2.setTimestamp(4,t1);
 			int orderde=pstmt2.executeUpdate();
 			if(orderde==0){
