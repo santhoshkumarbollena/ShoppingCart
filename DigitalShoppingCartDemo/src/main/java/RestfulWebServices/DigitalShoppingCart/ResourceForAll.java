@@ -163,6 +163,18 @@ public class ResourceForAll {
 		pm.updateProductPriceAndAvalability(category,itemName,price,avalability);
 		return true;
 	}
+	
+	@PUT
+	@Path("/UpdateinCart/{User}/{itemName}/{NoOfUnits}/{price}")
+	@Produces(MediaType.APPLICATION_JSON)
+	
+	public boolean updateCartDetails(@PathParam("User") String Customer,@PathParam("itemName") String itemName,@PathParam("NoOfUnits") String Noofunits,@PathParam("price") String price)
+	{
+		logger.info("demo");
+		Cart c1=new Cart();
+		c1.updateCart(Customer,itemName,Noofunits,price);
+		return true;
+	}
 	@GET
 	@Path("/fruitscheakavalability")
 	@Produces(MediaType.APPLICATION_JSON)

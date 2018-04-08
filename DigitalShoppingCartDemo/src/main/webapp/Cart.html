@@ -55,6 +55,18 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 		//http delete to remove products from cart after ordering
 		
 	}
+	$scope.UpdateProduct=function(ProductName,NoOfUnits,price)
+	{
+		var Cust=$cookies.get("Customer");
+		//$window.alert(ProductName);
+		$http({
+			method:'PUT',
+			url:'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/UpdateinCart/'+Cust+'/'+ProductName+'/'+NoOfUnits+'/'+price
+		}).then(function(response){
+			$window.location.href="Cart.html";
+		})
+		;
+	}
 	$scope.RemovingProduct=function(ProductName)
 	{
 		var Cust=$cookies.get("Customer");
@@ -110,6 +122,7 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 				<th >Price</th>
 				<th>price of single product</th>
 				<th></th>
+				<th></th>
 			</tr>
 			<tr ng-repeat="Product in Cart">
 				<th>{{Product.Name}}</th>
@@ -117,6 +130,7 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 				<th>{{Product.Units}}</th>
 				<th>{{(Product.Price-0.0)*Product.NoOfunits}}</th>
 				<th>{{Product.Price}}</th>
+				<th><input type="button" value="Update" ng-click="UpdateProduct(Product.Name,Product.NoOfunits,(Product.Price-0.0)*Product.NoOfunits)" class="CartButton"></th> 
 				<th><input type="button" value="Remove" ng-click="RemovingProduct(Product.Name)" class="CartButton"></th>
 			</tr>
 			<tr>

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html  ng-app="myModule" ng-controller="myController">
+<html ng-app="myModule" ng-controller="myController">
 <head>
 <meta charset="ISO-8859-1">
 <title>Cakes</title>
 <link rel="stylesheet" type="text/css" href="SubPagesStyle.css">
 <script src="angular.js"></script>
 <script src="Header.js"></script>
-     <script src="angular-cookies.js"></script>
+    <script src="angular-cookies.js"></script>
 
 <script type="text/javascript">
 var app=angular.module("myModule",['ngCookies']);
@@ -22,34 +22,71 @@ app.controller("myController",function($scope,$http,$window,$cookies){
 	$scope.user=$cookies.get("Customer");
 	//$scope.log=false;
 	//$window.alert($scope.log);
+	$scope.avalabilityOf={
+			choclatecake:'',
+			blackforest:'',
+			fruitcake:'',
+			redvelvet:''
+			
+	};
+	
+	$scope.cheakavalability=function()
+	{
+		var product="cakes";
+		$http({
+			method:'GET',
+			url:'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/cheakavalability/'+product
+		}).then(function(response){
+			$scope.avalabilityOf=response.data;
+			$scope.len=$scope.avalabilityOf.length;
+			//$window.alert($scope.avalabilityOf);
+		});
+	}
+	$scope.GettingPrice=function(){
+		var product="cakes";
+		$http({
+			method :'GET',
+			url : 'http://localhost:8080/DigitalShoppingCartDemo/webresources/ResourceForAll/GetCategoryPrice/'+product
+			
+		}).then(function (response)
+				{
+			$scope.Price=response.data;
+			//$window.alert($scope.Price);
+				});
+	}
+
 });
 </script>
-
 </head>
 <body>
 	<div class="Wrapper">		
 			<header ng-include="'Header.html'"></header>
 			
 		</div>
-		<div class="content">
-			
-			<div class="gallery">
-				<a href="project images/cakes/blackforest.jpg"><img alt="black forest" src="project images/cakes/blackforest.jpg"></a>
-				<div class="desc"><p>Black Forest</p></div>
-			</div>
-			<div class="gallery">
-				<a href="project images/cakes/choclatecake.jpgS"><img alt="choclate cake" src="project images/cakes/choclatecake.jpg"></a>
-				<div class="desc"><p>Choclate Cake</p></div>
-			</div>
-			<div class="gallery">
-				<a href="project images/cakes/fruitcake.jpg"><img alt="fruit cake" src="project images/cakes/fruitcake.jpg"></a>
-				<div class="desc"><p>Fruit Cake</p></div>
-			</div>
-			<div class="gallery">
-				<a href="project images/cakes/redvelvet.jpg"><img alt="redvelvet" src="project images/cakes/redvelvet.jpg"></a>
-				<div class="desc"><p>Red Velvet</p></div>
+		<div ng-init="GettingPrice()"></div>
+		<div class="content" ng-init="cheakavalability()">
+			<div class="gallery" ng-if="avalabilityOf[0]=='true'">
+				<a href="ChoclateCake.html"><img alt="choclate cake" src="project images/cakes/choclatecake.jpg"></a>
+				<div class="desc"><p>Choclate Cake</p>
+				Price:{{Price[0]}}</div>
 			</div>
 			
+			<div class="gallery" ng-if="avalabilityOf[1]=='true'">
+				<a href="BlackForetCake.html"><img alt="black forest cake" src="project images/cakes/blackforest.jpg"></a>
+				<div class="desc"><p>Black Forest</p>
+				Price:{{Price[1]}}</div>
+			</div>
+			<div class="gallery" ng-if="avalabilityOf[2]=='true'">
+				<a href="fruitCake.html"><img alt="fruit cake " src="project images/cakes/fruitcake.jpg"></a>
+				<div class="desc"><p>Fruit Cake</p>
+				Price:{{Price[2]}}
+				</div>
+			</div>
+			<div class="gallery" ng-if="avalabilityOf[3]=='true'">
+				<a href="redvelvet.html"><img alt="red velvet" src="project images/cakes/redvelvet.jpg"></a>
+				<div class="desc"><p>Red Velvet</p>
+				Price:{{Price[3]}}</div>
+			</div>
 		</div>
 		
 		

@@ -6,16 +6,18 @@ import java.util.*;
 import org.apache.log4j.Logger;
 
 public class Cart {
+	final  Logger logger = Logger.getLogger(Cart.class);
 	List<Product> li=new ArrayList<Product>();
+	DbmsConnection con=new DbmsConnection();
 	public  void AddProductToCart(Product p1)
 	
 	{
 		li.add(p1);
-		final  Logger logger = Logger.getLogger(Cart.class);
+		
 		DbmsQuerys query=new DbmsQuerys();
 		String AddCart=query.AddCart;
 		try{
-		DbmsConnection con=new DbmsConnection();
+		
 		if(con==null){
 			logger.error("exception in connection class");
 		}
@@ -42,5 +44,16 @@ public class Cart {
 		}catch(Exception ex){
 			logger.error("exception in Cart calss"+ex);
 		}
+	}
+	public void updateCart(String customer, String itemName, String noofunits, String price) {
+			logger.info(customer+itemName+noofunits);
+			try{
+				
+				String q="update cart set numberofunits='"+noofunits+"',price='"+price+"' where CustomerID='"+customer+"' and name='"+itemName+"';";
+				PreparedStatement pstmt=con.getConnection().prepareStatement(q);
+				pstmt.executeUpdate();
+			}catch(Exception ex){
+				logger.error("exception in cart updatecart "+ex);
+			}
 	}
 }
